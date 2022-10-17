@@ -1,0 +1,44 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Base.master.cs" Inherits="RegistroFacturasWEB.Base" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <%--<meta http-equiv="X-UA-Compatible" content="IE=Edge" />--%>
+    <title>Registro de Facturas WEB</title>
+    <%--<script src="../Scripts/jquery-1.10.2.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery-1.7.2.min.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery.min.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery-ui.min.js" type="text/javascript"></script>
+    <link href="/App_Themes/Tema/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <script src="/bootstrap/js/bootstrap.js" type="text/javascript"></script>
+    <link href="/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />--%>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <div id="menu" class="menu">
+            <div class="PanelUsuario">
+                <asp:Label ID="lblUsuarioSistema" runat="server" CssClass="Usuario" Text="USUARIO"></asp:Label>
+                <asp:LoginStatus ID="lgsSalir" runat="server" LogoutText="Salir" LogoutAction="Redirect"
+                    LogoutPageUrl="~/principal.aspx" CssClass="Salir" />
+            </div>
+            <asp:Menu ID="menuPrimary" runat="server" DataSourceID="siteSource1" Orientation="Horizontal">
+                <LevelMenuItemStyles>
+                    <asp:MenuItemStyle CssClass="level1" />
+                    <asp:MenuItemStyle CssClass="level2" />
+                    <asp:MenuItemStyle CssClass="level3" />
+                    <asp:MenuItemStyle CssClass="level3" />
+                    <asp:MenuItemStyle CssClass="level3" />
+                </LevelMenuItemStyles>
+                <StaticHoverStyle CssClass="hoverstyle" />
+            </asp:Menu>
+            <asp:SiteMapDataSource ID="siteSource1" runat="server" ShowStartingNode="false" />
+        </div>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        </asp:ContentPlaceHolder>
+    </div>
+    </form>
+</body>
+</html>

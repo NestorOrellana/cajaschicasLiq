@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RptDataSource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="DSRegFacWEB">
+  <ConnectionProperties>
+    <Extension>SQL</Extension>
+    <ConnectString>Data Source=SAP_INTERFACES_qa\interfaces_qa;Initial Catalog=RegistroFacturasSAP</ConnectString>
+  </ConnectionProperties>
+  <DataSourceID>1a18f2a8-eabf-4894-9ae8-be8c3fedb29c</DataSourceID>
+</RptDataSource>
