@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+  <siteMapNode url="" title="Registro facturas WEB"  description="Interfaz para registro de facturas para migrar a SAP" roles="*">
+    <siteMapNode url="~/principal.aspx" title="Inicio" description="Inicio de aplicación."/>
+
+    <siteMapNode url="" title="Seguridad" description="Pantallas para mantenimientos de seguridad" roles="SEGURIDAD">
+      <siteMapNode url="~/Seguridad/Usuarios.aspx" title="Usuarios" description="Usuarios."/>
+      <siteMapNode url="~/Seguridad/Rol.aspx" title="Roles" description="Roles."/>
+      <siteMapNode url="" title="Reportes" description="Reportes módulo seguridad" roles="*">
+        <siteMapNode url="~/Reportes/UsuarioCentroCosto.aspx" title="Reporte usuarios centro costo" description="Reporte mapeo usuarios centro costo."/>
+        <siteMapNode url="~/Reportes/UsuarioOrdenCosto.aspx" title="Reporte usuarios orden costo" description="Reporte mapeo usuarios orden costo."/>
+        <siteMapNode url="~/Reportes/Usuarios.aspx" title="Reporte usuarios" description="Reporte usuarios."/>
+        <siteMapNode url="~/Reportes/Bitacora_accesos.aspx" title="Reporte de Accesos" description="Bitacora de Accesos."/>
+      </siteMapNode>
+    </siteMapNode>
+    <siteMapNode url="" title="Super Usuario" description="Pantallas para mantenimientos de seguridad" roles="ADMINISTRADOR">
+      <siteMapNode url="~/Seguridad/SuperUsuario.aspx" title="Factura" description="Super Usuario Factura" />
+      <siteMapNode url="~/Seguridad/SuperUsuarioCC.aspx" title="Caja Chica" description="Super Usuario Caja Chica" />
+      <siteMapNode url="~/Seguridad/SuperUsuarioSincro.aspx" title="Sincronización" description="Super Usuario Sincronizador" />
+    </siteMapNode>
+    <siteMapNode url="" title="Mantenimientos" description="Pantallas para mantenimientos del sistema" roles="MANTENIMIENTO">
+      <siteMapNode url="~/Mantenimientos/Centro.aspx" title="Centro" description="Centro." />
+      <siteMapNode url="~/Mantenimientos/Sociedad.aspx" title="Sociedad" description="Sociedad."/>
+      <siteMapNode url="~/Mantenimientos/SociedadCentro.aspx" title="Sociedad centro" description="Mapeo sociedad centro."/>
+      <siteMapNode url="~/Mantenimientos/Proveedor.aspx" title="Proveedor" description="Proveedor."/>
+      <siteMapNode url="~/Mantenimientos/MaestrosSAP.aspx" title="Maestros SAP" description="Migrar maestros SAP."/>
+      <siteMapNode url="~/Mantenimientos/MapeoRegistradorAprobador.aspx" title="Mapeo Aprobador / Registrador" description="Mapear Aprobador por Registrador"/>
+      <siteMapNode url="~/Mantenimientos/Gasto.aspx" title="Gastos" description="Gastos"/>
+      <siteMapNode url="~/Mantenimientos/Kilometraje.aspx" title="Kilometrajes" description="Kilometrajes"/>
+      <siteMapNode url="~/Mantenimientos/NivelLiquidacion.aspx" title="Niveles de Liquidacion" description="Niveles de Liquidacion"/>
+      <siteMapNode url="~/Mantenimientos/Liquidaciones.aspx" title="Liquidaciones" description="Liquidaciones"/>
+      <siteMapNode url="~/Mantenimientos/MapeoCECOCuentaGasto.aspx" title="Mapeo/CECO/Cuenta" description="Mapeo/CECO/Cuenta"/>
+      <siteMapNode url="" title="Monedas" description="Monedas" roles="MANTENIMIENTO">
+        <siteMapNode url="~/Mantenimientos/Moneda.aspx" title="Monedas" description="Monedas."/>
+        <siteMapNode url="~/Mantenimientos/SociedadMoneda.aspx" title="Sociedades y monedas." description="Mapeo de sociedades y monedas."/>
+      </siteMapNode>
+      <siteMapNode url="" title="Reportes" description="Reportes módulo mantenimiento" roles="*">
+        <siteMapNode url="~/Reportes/Proveedores.aspx" title="Reporte proveedores" description="Reporte de proveedores."/>
+        <siteMapNode url="~/Reportes/CentroCosto.aspx" title="Reporte centro de costo" description="Reporte centro de costo."/>
+        <siteMapNode url="~/Reportes/OrdenCosto.aspx" title="Reporte orden de costo" description="Reporte orden de costo."/>
+        <siteMapNode url="~/Reportes/CuentasContables.aspx" title="Reporte cuentas contables" description="Reporte cuentas contables."/>
+        <siteMapNode url="~/Reportes/UsuarioCentroCosto.aspx?x=1" title="Reporte usuarios centro costo" description="Reporte mapeo usuarios centro costo."/>
+        <siteMapNode url="~/Reportes/UsuarioOrdenCosto.aspx?x=1" title="Reporte usuarios orden costo" description="Reporte mapeo usuarios orden costo."/>
+        <siteMapNode url="~/Reportes/UsuarioRol.aspx" title="Reporte usuarios rol" description="Reporte usuario rol."/>
+      </siteMapNode>
+    </siteMapNode>
+
+    <siteMapNode url="" title="Registro facturas" description="Pantallas para registro de facturas." roles="REGISTRADORES">
+      <siteMapNode url="~/RegistroFacturas/CajasChicas.aspx" title="Registro de cajas chicas" description="Registro de cajas chicas." />
+      <siteMapNode url="~/RegistroFacturas/ListadoCajasChicas.aspx" title="Listado de cajas chicas por usuario" description="Listado de cajas chicas realizadas por usuario." />
+      <siteMapNode url="~/RegistroFacturas/MapeoUsuarioCuenta.aspx" title="Cuentas por Usuario" description="Mapeo de Cuentas Gasto por Usuario" />
+      <siteMapNode url="~/RegistroFacturas/MapeoUsuarioCaja.aspx" title="Caja Chica por Usuario" description="Mapeo de Caja Chica por Usuario" />
+    </siteMapNode>
+
+    <siteMapNode url="" title="Mapeos" description="Mapeo cuentas y proveedores" roles="ADMINISTRADOR">
+      <siteMapNode url="~/RegistroFacturas/MapeoUsuarioCuenta_MM.aspx" title="Cuentas por Usuario" description="Mapeo de Cuentas Gasto por Usuario" />
+      <siteMapNode url="~/RegistroFacturas/MapeoUsuarioCaja_MM.aspx" title="Caja Chica por Usuario" description="Mapeo de Caja Chica por Usuario"/>
+    </siteMapNode>
+    
+
+    <siteMapNode url="" title="Revisión de facturas" description="Pantallas para revisión de facturas." roles="REVISORES">
+      <siteMapNode url="~/RevisionFacturas/ListadoCajasChicas.aspx" title="Revisión de cajas chicas" description="Revisión de cajas chicas."/>
+    </siteMapNode>
+
+    <siteMapNode url="" title="Aprobaciones" description="Pantallas para Aprobación de facturas." roles="APROBADORES">
+      <siteMapNode url="~/Aprobadores/AprobacionFacturas.aspx" title="Listado de Facturas para Aprobación" description="Listado de Facturas para Aprobar o Rechazar"/>
+    </siteMapNode>
+
+    <siteMapNode url="" title="Reportes" description="Reportes de cajas chicas." roles="*">
+      <siteMapNode url="~/Reportes/CajaChica.aspx" title="Reporte de Caja Chica" description="Reporte de Cajas Chicas."/>
+      <siteMapNode url="~/Reportes/Facturas.aspx" title="Reporte de Facturas" description="Reporte de Facturas."/>
+      <siteMapNode url="~/Reportes/FacturasPorAprobar.aspx" title="Reporte de Facturas Pendientes Aprobar" description="Reporte de Facturas Pendientes de Aprobar."/>
+      <siteMapNode url="~/Reportes/MapeoUsuarios.aspx" title="Reporte de Mapeo de Usuarios" description="Reporte de Mapeo de usuarios."/>
+      <siteMapNode url="~/Reportes/BusquedaFactura.aspx" title="Busqueda de facturas" description="Busqueda de facturas."/>
+    </siteMapNode>
+  </siteMapNode>
+</siteMap>

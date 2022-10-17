@@ -1,0 +1,47 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DipCmiGT.LogicaComun", "..\..\LibreriaDeClases\LogicaDIPCMI\trunk\LogicaComun\DipCmiGT.LogicaComun.csproj", "{187C54B8-882D-48A8-8923-7DF189324BE7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DipCmiGT.LogicaCajasChicas", "..\..\LibreriaDeClases\LogicaDIPCMI\trunk\LogicaCajasChicas\DipCmiGT.LogicaCajasChicas.csproj", "{593AF869-76DF-4934-9F20-5BC428F6EA69}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RegistroFacturasWEB", "CajasChicasWeb\RegistroFacturasWEB.csproj", "{31AFB60C-C603-4448-8186-17F85B7CE9A0}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 4
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://ip-apps.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = ..\\..\\..\\LibreriaDeClases\\LogicaDIPCMI\\trunk\\LogicaCajasChicas\\DipCmiGT.LogicaCajasChicas.csproj
+		SccProjectName1 = LogicaCajasChicas
+		SccLocalPath1 = ..\\..\\..\\LibreriaDeClases\\LogicaDIPCMI\\trunk\\LogicaCajasChicas
+		SccProjectUniqueName2 = ..\\..\\..\\LibreriaDeClases\\LogicaDIPCMI\\trunk\\LogicaComun\\DipCmiGT.LogicaComun.csproj
+		SccProjectName2 = LogicaComun
+		SccLocalPath2 = ..\\..\\..\\LibreriaDeClases\\LogicaDIPCMI\\trunk\\LogicaComun
+		SccProjectUniqueName3 = CajasChicasWeb\\RegistroFacturasWEB.csproj
+		SccProjectName3 = CajasChicasWeb
+		SccLocalPath3 = CajasChicasWeb
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{187C54B8-882D-48A8-8923-7DF189324BE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{187C54B8-882D-48A8-8923-7DF189324BE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{187C54B8-882D-48A8-8923-7DF189324BE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{187C54B8-882D-48A8-8923-7DF189324BE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{593AF869-76DF-4934-9F20-5BC428F6EA69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{593AF869-76DF-4934-9F20-5BC428F6EA69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{593AF869-76DF-4934-9F20-5BC428F6EA69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{593AF869-76DF-4934-9F20-5BC428F6EA69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31AFB60C-C603-4448-8186-17F85B7CE9A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31AFB60C-C603-4448-8186-17F85B7CE9A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31AFB60C-C603-4448-8186-17F85B7CE9A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31AFB60C-C603-4448-8186-17F85B7CE9A0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

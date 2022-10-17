@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogicaComun", "LogicaComun\LogicaComun.csproj", "{187C54B8-882D-48A8-8923-7DF189324BE7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogicaCajasChicas", "LogicaCajasChicas\LogicaCajasChicas.csproj", "{593AF869-76DF-4934-9F20-5BC428F6EA69}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{187C54B8-882D-48A8-8923-7DF189324BE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{187C54B8-882D-48A8-8923-7DF189324BE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{187C54B8-882D-48A8-8923-7DF189324BE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{187C54B8-882D-48A8-8923-7DF189324BE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{593AF869-76DF-4934-9F20-5BC428F6EA69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{593AF869-76DF-4934-9F20-5BC428F6EA69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{593AF869-76DF-4934-9F20-5BC428F6EA69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{593AF869-76DF-4934-9F20-5BC428F6EA69}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "BIRegFacWEB", "BIRegFacWEB\BIRegFacWEB.rptproj", "{9FAEDE34-DCB4-4CC1-B7F7-B6CB80007509}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		DebugLocal|Default = DebugLocal|Default
+		Release|Default = Release|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9FAEDE34-DCB4-4CC1-B7F7-B6CB80007509}.Debug|Default.ActiveCfg = Debug
+		{9FAEDE34-DCB4-4CC1-B7F7-B6CB80007509}.Debug|Default.Build.0 = DebugLocal
+		{9FAEDE34-DCB4-4CC1-B7F7-B6CB80007509}.Debug|Default.Deploy.0 = DebugLocal
+		{9FAEDE34-DCB4-4CC1-B7F7-B6CB80007509}.DebugLocal|Default.ActiveCfg = DebugLocal
+		{9FAEDE34-DCB4-4CC1-B7F7-B6CB80007509}.DebugLocal|Default.Build.0 = DebugLocal
+		{9FAEDE34-DCB4-4CC1-B7F7-B6CB80007509}.Release|Default.ActiveCfg = Release
+		{9FAEDE34-DCB4-4CC1-B7F7-B6CB80007509}.Release|Default.Build.0 = Release
+		{9FAEDE34-DCB4-4CC1-B7F7-B6CB80007509}.Release|Default.Deploy.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,676 @@
+﻿/*body
+{
+    font: 100%/1.4 "Helvetica Neue" , Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('/Images/background.png');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+}*/
+
+body
+{
+    font: 67% "Trebuchet MS" , sans-serif;
+    background-image: url('/Images/background.png');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+}
+
+table
+{
+    margin: 1em 0;
+    border-collapse: collapse;
+    }
+
+table td
+{
+    border: 1px solid #eee;
+    padding: .10em 5px;
+    text-align: left;
+}
+
+table th
+{
+    font-weight: bold;
+    border: 1px solid #eee;
+    padding: .10em 5px;
+    text-align: center;
+}
+
+label
+{
+    font-size: 8px;
+}
+
+span
+{
+    font-weight: bold;
+    font-size: small;
+}
+
+/*----- CLASES -----*/
+.row
+{
+    display: table-row;
+}
+
+.cell
+{
+    display: table-cell;
+}
+
+#popupcontainer
+{
+    display: table;
+    border: dashed 1px gray;
+}
+
+.popupcontainercell
+{
+    padding: 5px;
+    border-spacing: 5px;
+}
+
+#orderedittable
+{
+    font-size: 12px;
+}
+
+
+.Version
+{
+    float: right;
+    width: auto;
+    font-size: 16px;
+    font-family: Arial;
+    font-weight: bold;
+    padding-top: 35px;
+    padding-right: 10px;
+    color: #0B610B;
+}
+
+.EtiquetaNormal
+{
+    font-size: 12px;
+    font-family: "Helvetica Neue" , Helvetica, Arial, sans-serif;
+    font-weight: normal;
+    color: Black;
+}
+
+.EtiquetaNormalNegrita
+{
+    font-size: 12px;
+    font-family: "Helvetica Neue" , Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    color: Black;
+}
+
+.TituloPagina
+{
+    color: #545759;
+    font-family: "Helvetica Neue" , Helvetica, Arial, sans-serif;
+    font-weight: 900;
+    text-align: center;
+    padding-top: 10px;
+    text-transform: uppercase;
+}
+
+.TituloCaja
+{
+    background: #f38a00;
+    border: 2px solid #545759;
+    width: 95%;
+    margin: auto;
+    height: 40px;
+}
+
+.CentrarDiv
+{
+    padding-top: 10px;
+    padding-left: 10px;
+    display: table;
+    position: inherit;
+    width: 95%;
+    margin: auto;
+    clear: both;
+}
+
+.Boton
+{
+    -moz-box-shadow: 0px 0px 0px 2px  #9fb4f2;
+    -webkit-box-shadow: 0px 0px 0px 2px #9fb4f2;
+    box-shadow: 0px 0px 0px 2px #9fb4f2;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #7892c2), color-stop(1, #476e9e));
+    background: -moz-linear-gradient(top, #7892c2 5%, #476e9e 100%);
+    background: -webkit-linear-gradient(top, #7892c2 5%, #476e9e 100%);
+    background: -o-linear-gradient(top, #7892c2 5%, #476e9e 100%);
+    background: -ms-linear-gradient(top, #7892c2 5%, #476e9e 100%);
+    background: linear-gradient(to bottom, #7892c2 5%, #476e9e 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#7892c2', endColorstr='#476e9e',GradientType=0);
+    background-color: #7892c2;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    border: 2px solid #4e6096;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: arial;
+    font-size: 14px;
+    padding: 1px 42px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #283966;
+}
+.Boton:hover
+{
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #476e9e), color-stop(1, #7892c2));
+    background: -moz-linear-gradient(top, #476e9e 5%, #7892c2 100%);
+    background: -webkit-linear-gradient(top, #476e9e 5%, #7892c2 100%);
+    background: -o-linear-gradient(top, #476e9e 5%, #7892c2 100%);
+    background: -ms-linear-gradient(top, #476e9e 5%, #7892c2 100%);
+    background: linear-gradient(to bottom, #476e9e 5%, #7892c2 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#476e9e', endColorstr='#7892c2',GradientType=0); /*background-color: #476e9e;*/
+    background-color: #f38a00; /*Red;*/
+}
+
+.Boton:active
+{
+    position: relative;
+    top: 1px;
+}
+
+.Oculto
+{
+    display: none;
+}
+
+.GridViewStyle
+{
+    border-right: 2px solid #545759;
+    border-bottom: 2px solid #545759;
+    border-left: 2px solid #545759;
+    border-top: 2px solid #545759;
+    padding: 4px;
+}
+
+.GridViewStyle a
+{
+    color: #545759;
+}
+
+.GridViewHeaderStyle th
+{
+    border-left: 1px solid #545759;
+    border-right: 1px solid #545759;
+}
+
+.GridViewHeaderStyle
+{
+    background-color: #F59D29;
+    font-size: 11px;
+    font-family: "Helvetica Neue" , Helvetica, Arial, sans-serif;
+    color: #545759;
+}
+
+.GridViewFooterStyle
+{
+    background-color: #F59D29;
+    font-weight: bold;
+    color: #545759;
+}
+
+.GridViewRowStyle
+{
+    background-color: #FCE6D6;
+    color: #333333;
+    font-size: 11px;
+    font-family: "Helvetica Neue" , Helvetica, Arial, sans-serif;
+}
+
+.GridViewAlternatingRowStyle
+{
+    background-color: #FFFFFF;
+    color: #284775;
+    font-size: 11px;
+    font-family: "Helvetica Neue" , Helvetica, Arial, sans-serif;
+}
+
+.GridViewRowStyle td, .GridViewAlternatingRowStyle td
+{
+    border: 1px solid #EBE9ED;
+}
+
+.GridViewSelectedRowStyle
+{
+    background-color: #E2DED6;
+    font-weight: bold;
+    color: #333333;
+}
+
+.GridViewPagerStyle
+{
+    background-color: #f38a00;
+    color: #545759;
+    font-size: 11px;
+    font-family: "Helvetica Neue" , Helvetica, Arial, sans-serif;
+    color: White;
+}
+
+.GridViewPagerStyle table /* to center the paging links*/
+{
+    margin: 0 auto 0 auto;
+}
+
+.mensaje-Error
+{
+    border: solid 1px #f38a00;/*#FF0000;*/
+    height: 25px !important;
+    width: 350px !important;
+    clear: both;
+    padding-left: 30px;
+    padding-top: 7px;
+    background: #FBEFEF url(             '../../images/error.png' ) no-repeat 7px 7px;
+}
+
+.MensajeVacio
+{
+    background: transparent url(             '../../images/error.png' ) no-repeat;
+    padding-bottom: 5px;
+    padding-left: 20px;
+    display: inline;
+    float: left;
+    margin: 2px;
+    margin-left: 20px;
+    display: none;
+}
+
+div.ca-MensajeError
+{
+    border: solid 1px #f38a00; /*#FF0000;*/
+    background-color: #FBEFEF;
+    padding: 5px 5px 5px 20px;
+    margin: auto;
+    background-image: url(             '../../images/exclamation.png' );
+    background-repeat: no-repeat;
+    background-position: left;
+    height: 15px;
+    display: table;
+}
+
+div.ca-MensajeOK
+{
+    border: solid 1px #58ACFA;
+    background-color: #EFF5FB;
+    padding: 5px 5px 5px 20px;
+    margin: auto;
+    background-image: url(             '../../images/accept.png' );
+    background-repeat: no-repeat;
+    background-position: left;
+    height: 15px;
+    display: table;
+}
+
+
+/*CODIGO ADICIONAL*/
+
+#field
+{
+    margin-left: .5em;
+    float: right;
+}
+
+#field, label
+{
+    float: left;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: small;
+}
+
+br
+{
+    clear: both;
+}
+
+/*input{border: 1px solid black;margin-bottom: .5em;}*/
+
+.mayuscula
+{
+    text-transform: uppercase;
+}
+
+
+
+input.error
+{
+    border: 1px solid red;
+}
+
+label.error
+{
+    position: inherit;
+    background-image: url(             '../../images/exclamation.png' );
+    background-repeat: no-repeat;
+    background-position: right;
+    padding-left: 20px;
+    margin-left: .3em;
+    vertical-align: middle;
+    background-color: #FFEBE8;
+    border: solid 1px red;
+    width: 250px;
+}
+
+label.valid
+{
+    position: inherit;
+    background-image: url(             '../../images/accept.png' );
+    background-repeat: no-repeat;
+    background-position: rigth;
+    display: block;
+    width: 16px;
+    height: 16px;
+    border: none;
+    vertical-align: top;
+}
+
+/*  windows modal */
+element.style
+{
+}
+#content .demo-list a
+{
+    text-decoration: none;
+    display: block;
+    font-weight: bold;
+    font-size: 13px;
+    color: #3f3f3f;
+    text-shadow: 1px 1px #fff;
+    padding: 2% 4%;
+}
+#content a
+{
+    text-decoration: underline;
+}
+a, .title
+{
+    color: #f38a00;/*#B24926;*/
+}
+*
+{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+user agent stylesheeta:-webkit-any-link
+{
+    color: -webkit-link;
+    text-decoration: underline;
+    cursor: auto;
+}
+Inherited from li #content ul li
+{
+    padding-bottom: 5px;
+    padding-top: 5px;
+    padding-left: 20px;
+    line-height: 20px;
+    list-style-type: none;
+    background: url(../images/bullet.png) no-repeat 0 10px;
+}
+user agent stylesheetli
+{
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+Inherited from ul user agent stylesheetul, menu, dir
+{
+    display: block;
+    list-style-type: disc;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-start: 40px;
+}
+Inherited from body.jquery-ui.page.page-id-23.page-template-default.page-slug-dialog.single-author.singular body
+{
+    -webkit-font-smoothing: antialiased;
+    color: #333;
+    font: 15px/22.5px "Helvetica Neue" , HelveticaNeue, Helvetica, Arial, sans-serif;
+}
+Inherited from html.js.multiplebgs.boxshadow.cssgradients.wf-sourcecodepro-n7-active.wf-klavikaweb-n7-active.wf-sourcecodepro-n4-active.wf-klavikaweb-i7-active.wf-active html, button, input, select, textarea
+{
+    font-family: sans-serif;
+    color: #333;
+}
+html
+{
+    font-size: 100%;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+Pseudo ::selection element ::selection
+{
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+/*-------------------------- Login -------------------------- */
+
+
+
+
+.LoginBackGround
+{
+    background-image: url('/images/login.png');
+}
+
+
+.Login .Textbox, .Login .Hover
+{
+    width: 290px;
+    background: transparent url(/Images/inputlogin.png) no-repeat top left;
+    background-color:  transparent;
+    color: Black;
+    border: none;
+    padding: 5px;
+}
+
+.Login .Hover
+{
+    background: transparent url(/Images/inputlogin.png) no-repeat bottom left;
+    background-color: transparent;
+}
+
+.Login .Button2, .Login .Hover2
+{
+    width: 145px;
+    height: 28px;
+    background: transparent url(/Images/buttonlogin.png) no-repeat top left;
+    background-color: transparent;
+    color: Black;
+    border: none;
+    padding: 5px;
+}
+
+.Login .Hover2
+{
+    background: transparent url(/Images/buttonlogin.png) no-repeat bottom left;
+    background-color: transparent;
+}
+
+.fondo
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.content
+{
+    position: relative;
+    z-index: 1;
+}
+
+.alert
+{
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader (src= '/images/alert.png' , sizingMethod= 'scale' );
+}
+
+
+/*********************************MENU***********************/
+.level1
+{
+    color: #f38a00;/*#FFFFFF;*/
+    font-weight: bold;
+    font-size: 12px;
+    font-family: Arial;
+    margin: 0;
+    z-index: 10;
+    padding-top: 2px;
+    text-decoration: none;
+    border-right: solid 1px #545759;
+    width: 165px;
+    text-align: center;
+    height: 25px;
+    margin-top: -2px;
+}
+
+.level1 li, .level3 li
+{
+    height: 26px;
+}
+
+
+.level2
+{
+    background: #f38a00;
+    border: solid 1px #545759;
+    z-index: 10;
+}
+
+.level3
+{
+    background: #f38a00;
+    margin-left: 2px;
+    height: 26px;
+    z-index: 10;
+}
+
+.level1 a
+{
+    float: left;
+    color: Black; /* #545759;*/
+    text-decoration: none;
+    width: 165px;
+    margin: 0;
+    padding: 0;
+    font: bold 12px Arial;
+    padding-top: 0.2px;
+    padding-left: 5px;
+    padding-bottom: 2px;
+    height: 22px;
+}
+
+.level2 a
+{
+    float: left;
+    color: Black;
+    text-decoration: none;
+    width: 275px;
+    margin: 0;
+    padding: 0;
+    font: bold 13px Arial;
+    padding-top: 7px;
+    padding-left: 5px;
+    background: #f38a00; /*ffffff*/
+    height: 26px;
+}
+.level3 a
+{
+    float: left;
+    color: Black;
+    text-decoration: none;
+    width: 200px;
+    margin: 0;
+    padding: 0;
+    font: bold 13px Arial;
+    padding-top: 7px;
+    padding-left: 5px;
+    border: solid 1px #f24437;
+    background: solid 1px #f38a00;
+}
+
+.hoverstyle
+{
+    color: white;
+    background: solid 1px #f38a00;
+}
+
+.level2 a:hover, .level3 a:hover
+{
+    background: solid 1px #f38a00;
+    margin: 0;
+}
+
+.menu
+{
+    width: 100%;
+    height: 35px;
+    border: 1px solid #545759;
+    border-width: 1px 0;
+    background: #f38a00;
+    padding-top: 10px;
+    padding-bottom: 1px;
+}
+
+.PanelUsuario
+{
+    float: right;
+    height: 16px;
+    width: 310px;
+    background: #f38a00;
+    border-left: 1px solid #ffffff;
+    position: inherit;
+    margin-top: -10px;
+    padding-top: 10px;
+    padding: 10px;
+}
+
+
+.Salir
+{
+    width: 60px;
+    height: 20px;
+    margin-right: 10px;
+    color: black;
+    font-family: Arial;
+    font-size: 12px;
+    font-weight: bold;
+    text-decoration: none;
+    text-transform: uppercase;
+    background: url(../../images/cerrar.png) right top no-repeat;
+    margin: 0px;
+    padding-top: 1px;
+    float: right;
+}
+
+.Salir:hover
+{
+    text-decoration: underline;
+}
+
+.Usuario
+{
+    color: black;
+    height: 20px;
+    padding-top: 0.1px;
+    padding-left: 5px;
+    font-family: Arial;
+    font-size: 12px;
+    font-weight: bold;
+    width: 150px;
+    float: left;
+}

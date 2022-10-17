@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{593AF869-76DF-4934-9F20-5BC428F6EA69}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LogicaCajasChicas</RootNamespace>
+    <AssemblyName>LogicaCajasChicas</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="sapnco, Version=3.0.0.42, Culture=neutral, PublicKeyToken=50436dca5c7f7d23, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dll\sapnco.dll</HintPath>
+    </Reference>
+    <Reference Include="sapnco_utils, Version=3.0.0.42, Culture=neutral, PublicKeyToken=50436dca5c7f7d23, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dll\sapnco_utils.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DTO\AprobacionCentroEncabezadoDTO.cs" />
+    <Compile Include="DTO\AprobacionFacturasDTO.cs" />
+    <Compile Include="DTO\AprobadorCentroDTO.cs" />
+    <Compile Include="DTO\AprobadorFacturaDetalleDTO.cs" />
+    <Compile Include="DTO\ArticuloDTO.cs" />
+    <Compile Include="DTO\CajaChicaDTO.cs" />
+    <Compile Include="DTO\CajaChicaEncabezadoDTO.cs" />
+    <Compile Include="DTO\CentroDTO.cs" />
+    <Compile Include="DTO\BitcoraDTO.cs" />
+    <Compile Include="DTO\GastosDTO.cs" />
+    <Compile Include="DTO\KilometrajeDTO.cs" />
+    <Compile Include="DTO\LiquidacionDTO.cs" />
+    <Compile Include="DTO\MapeoCECOCuentaGastoDTO.cs" />
+    <Compile Include="DTO\MapeoRegistradorAprobadorlDTO.cs" />
+    <Compile Include="DTO\NivelLiquidacionDTO.cs" />
+    <Compile Include="DTO\RespuestaPoDTO.cs" />
+    <Compile Include="DTO\SuperUsuarioDTO.cs" />
+    <Compile Include="DTO\UsuarioCajaDTO.cs" />
+    <Compile Include="DTO\DominioDTO.cs" />
+    <Compile Include="DTO\UsuarioCuentaDTO.cs" />
+    <Compile Include="DTO\DatosCorreoDTO.cs" />
+    <Compile Include="DTO\MonedaDTO.cs" />
+    <Compile Include="DTO\NivelDTO.cs" />
+    <Compile Include="DTO\IndicadoresIVADTO.cs" />
+    <Compile Include="DTO\IntermediaFacturaDetalleDTO.cs" />
+    <Compile Include="DTO\IntermediaFacturaEncabezadoDTO.cs" />
+    <Compile Include="DTO\RegistroContableDTO.cs" />
+    <Compile Include="DTO\ResultadoTransaccionDTO.cs" />
+    <Compile Include="DTO\SAPCajasChicasDTO.cs" />
+    <Compile Include="DTO\SAPCuentaContableCentroCostoDTO.cs" />
+    <Compile Include="DTO\CuentaContableDetalleDTO.cs" />
+    <Compile Include="DTO\CuentaContableEncabezado.cs" />
+    <Compile Include="DTO\DepartamentoDTO.cs" />
+    <Compile Include="DTO\FacturaDetalleDTO.cs" />
+    <Compile Include="DTO\FacturaEncabezadoDTO.cs" />
+    <Compile Include="DTO\ProveedorDTO.cs" />
+    <Compile Include="DTO\RolDTO.cs" />
+    <Compile Include="DTO\SAPCentroCostoDTO.cs" />
+    <Compile Include="DTO\SAPCuentaContableDTO.cs" />
+    <Compile Include="DTO\SAPOrdenesGastosDTO.cs" />
+    <Compile Include="DTO\SAPCuentasOrdenesGastosDTO.cs" />
+    <Compile Include="DTO\SociedadCentroDTO.cs" />
+    <Compile Include="DTO\SociedadDTO.cs" />
+    <Compile Include="DTO\SociedadMonedaDTO.cs" />
+    <Compile Include="DTO\TipoDocumentoDTO.cs" />
+    <Compile Include="DTO\UsuarioCentroCostoDTO.cs" />
+    <Compile Include="DTO\UsuarioDTO.cs" />
+    <Compile Include="DTO\UsuarioMantenimientoDTO.cs" />
+    <Compile Include="DTO\UsuarioOrdenCostoDTO.cs" />
+    <Compile Include="DTO\UsuarioRolDTO.cs" />
+    <Compile Include="DTO\UsuarioSociedadCentroDTO.cs" />
+    <Compile Include="DTO\Valores_ISRDTO.cs" />
+    <Compile Include="Entidad\AprobacionFactura.cs" />
+    <Compile Include="Entidad\AprobadorCentro.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Entidad\AprobadorCentroEncabezado.cs" />
+    <Compile Include="Entidad\CajaChica.cs" />
+    <Compile Include="Entidad\Centro.cs" />
+    <Compile Include="Entidad\Gasto.cs" />
+    <Compile Include="Entidad\Kilometraje.cs" />
+    <Compile Include="Entidad\Liquidacion.cs" />
+    <Compile Include="Entidad\MapeoCECOCuentaGasto.cs" />
+    <Compile Include="Entidad\NivelLiquidacion.cs" />
+    <Compile Include="Entidad\SincronizacionPO.cs" />
+    <Compile Include="Entidad\SuperUsuario.cs" />
+    <Compile Include="Entidad\UsuarioCajaChica.cs" />
+    <Compile Include="Entidad\UsuarioCuentaGasto.cs" />
+    <Compile Include="Entidad\DatosCorreo.cs" />
+    <Compile Include="Entidad\FacturaDetalle.cs" />
+    <Compile Include="Entidad\FacturaEncabezado.cs" />
+    <Compile Include="Entidad\Moneda.cs" />
+    <Compile Include="Entidad\Nivel.cs" />
+    <Compile Include="Entidad\IndicadoresIVA.cs" />
+    <Compile Include="Entidad\IntermediaFacturaDetalle.cs" />
+    <Compile Include="Entidad\IntermediaFacturaEncabezado.cs" />
+    <Compile Include="Entidad\NumeroCajaChica.cs" />
+    <Compile Include="Entidad\RegistroContable.cs" />
+    <Compile Include="Entidad\SAPCajasChicas.cs" />
+    <Compile Include="Entidad\SAPCuentaContable.cs" />
+    <Compile Include="Entidad\SAPCuentasOrdenesGastos.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Entidad\SAPOrdenesGastos.cs" />
+    <Compile Include="Entidad\Proveedor.cs" />
+    <Compile Include="Entidad\Rol.cs" />
+    <Compile Include="Entidad\SAPCentroCosto.cs" />
+    <Compile Include="Entidad\SAPCuentaContableCentroCosto.cs" />
+    <Compile Include="Entidad\Sociedad.cs" />
+    <Compile Include="Entidad\SociedadCentro.cs" />
+    <Compile Include="Entidad\SociedadMoneda.cs" />
+    <Compile Include="Entidad\TipoDocumento.cs" />
+    <Compile Include="Entidad\Usuario.cs" />
+    <Compile Include="Entidad\UsuarioCentroCosto.cs" />
+    <Compile Include="Entidad\UsuarioOrdenCompra.cs" />
+    <Compile Include="Entidad\UsuarioRol.cs" />
+    <Compile Include="Entidad\UsuarioSociedadCentro.cs" />
+    <Compile Include="Entidad\Valores_ISR.cs" />
+    <Compile Include="Enum\Cargo_AbonoEnum.cs" />
+    <Compile Include="Enum\ClaveContabilidadEnum.cs" />
+    <Compile Include="Enum\TipoFacturaEnum.cs" />
+    <Compile Include="Enum\TipoImpuestosEnum.cs" />
+    <Compile Include="Enum\TipoOperacionEnum.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sesion\GestorAprobadores.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Sesion\GestorCajaChica.cs" />
+    <Compile Include="Sesion\GestorCentro.cs" />
+    <Compile Include="Sesion\GestorDatosSAP.cs" />
+    <Compile Include="Sesion\GestorGastos.cs" />
+    <Compile Include="Sesion\GestorKilometraje.cs" />
+    <Compile Include="Sesion\GestorLiquidacion.cs" />
+    <Compile Include="Sesion\GestorMapeoCECOCuentaGasto.cs" />
+    <Compile Include="Sesion\GestorNivelLiquidacion.cs" />
+    <Compile Include="Sesion\GestorProveedor.cs" />
+    <Compile Include="Sesion\GestorSeguridad.cs" />
+    <Compile Include="Sesion\GestorSincronizacionPO.cs" />
+    <Compile Include="Sesion\GestorSociedad.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LogicaComun\DipCmiGT.LogicaComun.csproj">
+      <Project>{187C54B8-882D-48A8-8923-7DF189324BE7}</Project>
+      <Name>DipCmiGT.LogicaComun</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Dll\sapnco.dll" />
+    <Content Include="Dll\sapnco_utils.dll" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
