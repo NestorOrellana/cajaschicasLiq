@@ -439,6 +439,22 @@ namespace RegistroFacturasWEB.RegistroFacturas
         }
 
         [WebMethod]
+        public List<LlenarDDL_DTO> ListarNiveles(string codigoSociedad)
+        {
+            GestorSociedad gestorUCC = null;
+
+            try
+            {
+                gestorUCC = GestorSociedad();
+                return gestorUCC.ListarNiveles(codigoSociedad);
+            }
+            finally
+            {
+                if (gestorUCC != null) gestorUCC.Dispose();
+            }
+        }
+
+        [WebMethod]
         public List<LlenarDDL_DTO> ListarUsuarioCentro(string codigoSociedad)
         {
             GestorSociedad gestorUCC = null;

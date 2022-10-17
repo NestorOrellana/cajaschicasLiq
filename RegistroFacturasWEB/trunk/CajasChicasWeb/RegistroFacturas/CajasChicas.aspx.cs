@@ -62,6 +62,19 @@ namespace RegistroFacturasWEB.RegistroFacturas
             ddlTipoOperacion.Items.Insert(2, new ListItem("FONDO REVOLVENTE", TipoOperacionEnum.FR.ToString()));
             ddlTipoOperacion.Items.Insert(3, new ListItem("KILOMETRAJE", TipoOperacionEnum.KM.ToString()));
             ddlTipoOperacion.Items.Insert(3, new ListItem("LIQUIDACION", TipoOperacionEnum.LQ.ToString()));
+            ddlTipoOperacion.Items.Insert(4, new ListItem("VIÁTICOS LOCALES", TipoOperacionEnum.VL.ToString()));
+        }
+
+        private void MostrarCampos(bool mostrar = true) 
+        {
+            if (mostrar)
+            {
+                //camposLiquidacion.Style.Add("display", "block");
+            }
+            else
+            {
+                //camposLiquidacion.Style.Add("display", "none");
+            }
         }
 
         private void DesplegarAviso(string mensaje)
@@ -191,7 +204,7 @@ namespace RegistroFacturasWEB.RegistroFacturas
             }
         }
 
-        private void CargarObjetoCajasChicas(ref  CajaChicaEncabezadoDTO cajaChicaDto)
+        private void CargarObjetoCajasChicas(ref  CajaChicaEncabezadoDTO cajaChicaDto, bool viaticosLocales)
         {
             cajaChicaDto.ID_CAJA_CHICA = Convert.ToInt32(hfIdCajaChica.Value);
             cajaChicaDto.ID_SOCIEDAD_CENTRO = Convert.ToInt32(hfCentro.Value);
@@ -204,6 +217,20 @@ namespace RegistroFacturasWEB.RegistroFacturas
             cajaChicaDto.USUARIO_MANTENIMIENTO.USUARIO_MODIFICO = usuario;
             cajaChicaDto.NOMBRE_CC = ddlCajaChica.SelectedItem.Text;
             cajaChicaDto.ID_SOCIEDAD_MONEDA = Convert.ToInt16(hfMoneda.Value);
+
+            if (viaticosLocales)
+            {
+                cajaChicaDto.FechaInicioViaje = Convert.ToDateTime(txtFechaInicioViaje.Text);
+                cajaChicaDto.FechaFinViaje = Convert.ToDateTime(txtFechaFinViaje.Text);
+                cajaChicaDto.Objetivo = txtObjetivo.Text;
+                cajaChicaDto.NumeroDias = int.Parse(txtNumeroDias.Text);
+                cajaChicaDto.ViaticosRecibidos = decimal.Parse(txtViaticosRecibidos.Text);
+                cajaChicaDto.IdNivel = Convert.ToInt32(hfNivel.Value);
+                cajaChicaDto.ViaticosLocales = true;
+            }
+            else {
+                cajaChicaDto.ViaticosLocales = false;
+            }
 
             return;
         }
@@ -228,7 +255,37 @@ namespace RegistroFacturasWEB.RegistroFacturas
                 mensaje += "Debe seleccionar un tipo de operación. <br>";
 
             if (txtDescripcion.Text.Equals(string.Empty))
-                mensaje += "Debe de escribir la descripción de la caja chica.";
+                mensaje += "Debe de escribir la descripción de la caja chica. <br>";
+
+            if (ddlTipoOperacion.SelectedValue == "VL") {
+
+                if (txtFechaInicioViaje.Text.Equals(string.Empty))
+                    mensaje += "Debe indicar la fecha de inicio del viaje. <br>";
+                else if (txtFechaFinViaje.Text.Equals(string.Empty))
+                    mensaje += "Debe indicar la fecha de fin del viaje. <br>";
+                else {
+                    DateTime fechaInicio = Convert.ToDateTime(txtFechaInicioViaje.Text);
+                    DateTime fechaFin = Convert.ToDateTime(txtFechaFinViaje.Text);
+
+                    if (fechaInicio > fechaFin)
+                        mensaje += "La fecha de inicio de viaje no puede ser mayor a la fecha de fin. <br>";
+
+                    if (fechaFin < fechaInicio)
+                        mensaje += "La fecha de fin de viaje no puede ser menor a la fecha de inicio. <br>";
+                }
+
+                if (txtObjetivo.Text.Equals(string.Empty))
+                    mensaje += "Debe indicar el objetivo. <br>";
+
+                if (txtNumeroDias.Text.Equals(string.Empty))
+                    mensaje += "Debe indicar el numero de dias. <br>";
+
+                if (txtViaticosRecibidos.Text.Equals(string.Empty))
+                    mensaje += "Debe indicar los viaticos recibidos. <br>";
+
+                if (ddlNivel.SelectedValue == "0")
+                    mensaje += "Debe selccionar el nivel de liquidacion. <br>";
+            }
 
             return mensaje;
         }
@@ -257,13 +314,39 @@ namespace RegistroFacturasWEB.RegistroFacturas
 
                 if (!mensaje.Equals(string.Empty))
                     throw new ExcepcionesDIPCMI(mensaje);
+                bool viaticosLocales = false;
+                if (ddlTipoOperacion.SelectedValue == "VL")
+                    viaticosLocales = true;
 
-                CargarObjetoCajasChicas(ref cajaChicaDto);
+                CargarObjetoCajasChicas(ref cajaChicaDto, viaticosLocales);
 
                 cajaChicaDto = gestorCajaChica.AlmacenarCajaChica(cajaChicaDto);
 
-                String b64 = Convert.ToBase64String(Encoding.UTF8.GetBytes(string.Format("idCajaChica={0}&codigoSociedad={1}&idCentro={2}&nombreSociedad={3}&nombreCentro={4}&codigoCajaChica={5}&sociedadCentro={6}&cajaChicaSAP={7}&moneda={8}&nombreCC={9}&nombreCC={10}", cajaChicaDto.ID_CAJA_CHICA, cajaChicaDto.CODIGO_SOCIEDAD, cajaChicaDto.CODIGO_CENTRO, cajaChicaDto.NOMBRE_EMPRESA, cajaChicaDto.NOMBRE_CENTRO, cajaChicaDto.CODIGO_CC, hfCentro.Value, hfCajaChicaSAP.Value, cajaChicaDto.MONEDA, cajaChicaDto.NOMBRE_CC, cajaChicaDto.PAIS)));
-                string url = string.Concat("~/RegistroFacturas/RegistroFacturas.aspx?", b64);
+                String b64;
+                string url;
+
+                if (viaticosLocales)
+                {
+                    b64 = Convert.ToBase64String(Encoding.UTF8.GetBytes(string.Format(@"idCajaChica={0}
+                        &codigoSociedad={1}&idCentro={2}&nombreSociedad={3}&nombreCentro={4}
+                        &codigoCajaChica={5}&sociedadCentro={6}&cajaChicaSAP={7}&moneda={8}
+                        &nombreCC={9}&nombreCC={10}&fechaInicio={11}&fechaFin{12}
+                        &objetivo={13}&numeroDias{14}&viaticosRecibidos{15}&nivel{16}", 
+                        cajaChicaDto.ID_CAJA_CHICA, cajaChicaDto.CODIGO_SOCIEDAD, 
+                        cajaChicaDto.CODIGO_CENTRO, cajaChicaDto.NOMBRE_EMPRESA, 
+                        cajaChicaDto.NOMBRE_CENTRO, cajaChicaDto.CODIGO_CC, hfCentro.Value, 
+                        hfCajaChicaSAP.Value, cajaChicaDto.MONEDA, cajaChicaDto.NOMBRE_CC, cajaChicaDto.PAIS,
+                        cajaChicaDto.FechaInicioViaje, cajaChicaDto.FechaFinViaje,
+                        cajaChicaDto.Objetivo, cajaChicaDto.NumeroDias, cajaChicaDto.ViaticosRecibidos, 
+                        cajaChicaDto.IdNivel)));
+                    url = string.Concat("~/RegistroFacturas/RegistroLiquidacionViaticos.aspx?", b64);
+                }
+                else
+                {
+                    b64 = Convert.ToBase64String(Encoding.UTF8.GetBytes(string.Format("idCajaChica={0}&codigoSociedad={1}&idCentro={2}&nombreSociedad={3}&nombreCentro={4}&codigoCajaChica={5}&sociedadCentro={6}&cajaChicaSAP={7}&moneda={8}&nombreCC={9}&nombreCC={10}", cajaChicaDto.ID_CAJA_CHICA, cajaChicaDto.CODIGO_SOCIEDAD, cajaChicaDto.CODIGO_CENTRO, cajaChicaDto.NOMBRE_EMPRESA, cajaChicaDto.NOMBRE_CENTRO, cajaChicaDto.CODIGO_CC, hfCentro.Value, hfCajaChicaSAP.Value, cajaChicaDto.MONEDA, cajaChicaDto.NOMBRE_CC, cajaChicaDto.PAIS)));
+                    url = string.Concat("~/RegistroFacturas/RegistroFacturas.aspx?", b64);
+                }
+
                 Response.Redirect(url);
             }
             catch (Exception ex)

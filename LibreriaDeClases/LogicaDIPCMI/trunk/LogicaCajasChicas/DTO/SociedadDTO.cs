@@ -22,6 +22,7 @@ namespace DipCmiGT.LogicaCajasChicas
         public bool ALTA { get; set; }
         public string CUENTA_PROVEEDOR { get; set; }
         public string MANDANTE { get; set; }
+        public int TiempoLiquidacion { get; set; }
         public UsuarioMantenimientoDTO USUARIO_MANTENIMIENTO { get; set; }
     }
 }

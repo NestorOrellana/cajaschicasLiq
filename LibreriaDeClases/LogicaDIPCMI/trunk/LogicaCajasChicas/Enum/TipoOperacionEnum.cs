@@ -10,6 +10,7 @@ namespace LogicaCajasChicas.Enum
         CC,
         FR,
         KM,
-        LQ
+        LQ,
+        VL
     }
 }

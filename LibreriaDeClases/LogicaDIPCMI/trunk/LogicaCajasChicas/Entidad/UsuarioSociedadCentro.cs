@@ -326,7 +326,6 @@ namespace LogicaCajasChicas.Entidad
 
             return CargarDDL(_sqlComando.ExecuteReader());
         }
-
         #endregion
 
     }

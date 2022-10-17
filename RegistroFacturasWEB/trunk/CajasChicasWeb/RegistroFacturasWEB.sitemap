@@ -27,6 +27,11 @@
       <siteMapNode url="~/Mantenimientos/Proveedor.aspx" title="Proveedor" description="Proveedor."/>
       <siteMapNode url="~/Mantenimientos/MaestrosSAP.aspx" title="Maestros SAP" description="Migrar maestros SAP."/>
       <siteMapNode url="~/Mantenimientos/MapeoRegistradorAprobador.aspx" title="Mapeo Aprobador / Registrador" description="Mapear Aprobador por Registrador"/>
+      <siteMapNode url="~/Mantenimientos/Gasto.aspx" title="Gastos" description="Gastos"/>
+      <siteMapNode url="~/Mantenimientos/Kilometraje.aspx" title="Kilometrajes" description="Kilometrajes"/>
+      <siteMapNode url="~/Mantenimientos/NivelLiquidacion.aspx" title="Niveles de Liquidacion" description="Niveles de Liquidacion"/>
+      <siteMapNode url="~/Mantenimientos/Liquidaciones.aspx" title="Liquidaciones" description="Liquidaciones"/>
+      <siteMapNode url="~/Mantenimientos/MapeoCECOCuentaGasto.aspx" title="Mapeo/CECO/Cuenta" description="Mapeo/CECO/Cuenta"/>
       <siteMapNode url="" title="Monedas" description="Monedas" roles="MANTENIMIENTO">
         <siteMapNode url="~/Mantenimientos/Moneda.aspx" title="Monedas" description="Monedas."/>
         <siteMapNode url="~/Mantenimientos/SociedadMoneda.aspx" title="Sociedades y monedas." description="Mapeo de sociedades y monedas."/>

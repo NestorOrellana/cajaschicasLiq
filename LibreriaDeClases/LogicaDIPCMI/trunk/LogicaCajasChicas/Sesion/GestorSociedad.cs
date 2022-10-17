@@ -979,6 +979,23 @@ namespace DipCmiGT.LogicaCajasChicas.Sesion
             }
         }
 
+        public List<LlenarDDL_DTO> ListarNiveles(string codigoSociedad)
+        {
+            if (_sociedadCentro == null) _sociedadCentro = new SociedadCentro(cnnSql);
+
+            try
+            {
+                cnnSql.Open();
+
+                return _sociedadCentro.ListarNiveles(codigoSociedad);
+
+            }
+            finally
+            {
+                if (cnnSql.State != ConnectionState.Closed) cnnSql.Close();
+            }
+        }
+
         public List<LlenarDDL_DTO> ListarUsuarioSociedad(string usuario)
         {
             if (_usuarioSociedadCentro == null) _usuarioSociedadCentro = new UsuarioSociedadCentro(cnnSql);

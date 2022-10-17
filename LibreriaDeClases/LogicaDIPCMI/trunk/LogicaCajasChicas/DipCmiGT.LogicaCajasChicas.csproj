@@ -62,7 +62,13 @@
     <Compile Include="DTO\CajaChicaEncabezadoDTO.cs" />
     <Compile Include="DTO\CentroDTO.cs" />
     <Compile Include="DTO\BitcoraDTO.cs" />
+    <Compile Include="DTO\GastosDTO.cs" />
+    <Compile Include="DTO\KilometrajeDTO.cs" />
+    <Compile Include="DTO\LiquidacionDTO.cs" />
+    <Compile Include="DTO\MapeoCECOCuentaGastoDTO.cs" />
     <Compile Include="DTO\MapeoRegistradorAprobadorlDTO.cs" />
+    <Compile Include="DTO\NivelLiquidacionDTO.cs" />
+    <Compile Include="DTO\RespuestaPoDTO.cs" />
     <Compile Include="DTO\SuperUsuarioDTO.cs" />
     <Compile Include="DTO\UsuarioCajaDTO.cs" />
     <Compile Include="DTO\DominioDTO.cs" />
@@ -106,6 +112,12 @@
     <Compile Include="Entidad\AprobadorCentroEncabezado.cs" />
     <Compile Include="Entidad\CajaChica.cs" />
     <Compile Include="Entidad\Centro.cs" />
+    <Compile Include="Entidad\Gasto.cs" />
+    <Compile Include="Entidad\Kilometraje.cs" />
+    <Compile Include="Entidad\Liquidacion.cs" />
+    <Compile Include="Entidad\MapeoCECOCuentaGasto.cs" />
+    <Compile Include="Entidad\NivelLiquidacion.cs" />
+    <Compile Include="Entidad\SincronizacionPO.cs" />
     <Compile Include="Entidad\SuperUsuario.cs" />
     <Compile Include="Entidad\UsuarioCajaChica.cs" />
     <Compile Include="Entidad\UsuarioCuentaGasto.cs" />
@@ -151,8 +163,14 @@
     <Compile Include="Sesion\GestorCajaChica.cs" />
     <Compile Include="Sesion\GestorCentro.cs" />
     <Compile Include="Sesion\GestorDatosSAP.cs" />
+    <Compile Include="Sesion\GestorGastos.cs" />
+    <Compile Include="Sesion\GestorKilometraje.cs" />
+    <Compile Include="Sesion\GestorLiquidacion.cs" />
+    <Compile Include="Sesion\GestorMapeoCECOCuentaGasto.cs" />
+    <Compile Include="Sesion\GestorNivelLiquidacion.cs" />
     <Compile Include="Sesion\GestorProveedor.cs" />
     <Compile Include="Sesion\GestorSeguridad.cs" />
+    <Compile Include="Sesion\GestorSincronizacionPO.cs" />
     <Compile Include="Sesion\GestorSociedad.cs" />
   </ItemGroup>
   <ItemGroup>

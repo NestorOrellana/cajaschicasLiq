@@ -22,7 +22,8 @@ namespace DipCmiGT.LogicaCajasChicas.Entidad
                                         a.FechaCreacion, a.UsuarioModificacion, a.FechaModificacion, c.CodigoSociedad, c.Nombre, cast(d.IdCentro as smallint) IdCentro, d.Nombre,
                                         COUNT(e.IdCajaChica) facturas, SUM(isnull(e.ValorTotal,0)) TotalCC,
                                         cast(c.CodigoSociedad as varchar(4))+ '-' + cast(d.IdCentro as varchar(4)) + '-' +a.NumeroCajaChica +'-' + RIGHT(REPLICATE('0', 6)+ CAST(a.Correlativo  AS VARCHAR(6)), 6)   CodigoCC, TipoOperacion,
-                                        a.EncargadoCC, a.IdSociedadMoneda, case when g.Moneda Is null then c.Moneda else g.Moneda end moneda, c.Pais
+                                        a.EncargadoCC, a.IdSociedadMoneda, case when g.Moneda Is null then c.Moneda else g.Moneda end moneda, c.Pais,
+                                        a.FechaInicioViaje, a.FechaFinViaje, a.Objetivo, a.NumeroDias, a.ViaticosRecibidos, a.IdNivel, a.ViaticosLocales
                                         from CajaChicaEncabezado a
                                         inner join SociedadCentro b on b.IdSociedadCentro = a.IdSociedadCentro and b.Alta = 1
                                         inner join Sociedad c on c.CodigoSociedad = b.CodigoSociedad and c.Alta = 1
@@ -35,7 +36,19 @@ namespace DipCmiGT.LogicaCajasChicas.Entidad
                                                                  VALUES (@IdSociedadCentro, @Correlativo, @NumeroCajaChica, @Descripcion, @UsuarioAlta, @TipoOperacion, @EncargadoCC, @IdSociedadMoneda)
                                         SELECT @@IDENTITY ";
 
+        protected string sqlInsertVl = @" INSERT INTO CajaChicaEncabezado (IdSociedadCentro, Correlativo, NumeroCajaChica, Descripcion, UsuarioAlta, TipoOperacion, EncargadoCC, IdSociedadMoneda, 
+                                        FechaInicioViaje, FechaFinViaje, Objetivo, NumeroDias, ViaticosRecibidos, IdNivel, ViaticosLocales) 
+                                        VALUES (@IdSociedadCentro, @Correlativo, @NumeroCajaChica, @Descripcion, @UsuarioAlta, @TipoOperacion, @EncargadoCC, @IdSociedadMoneda, 
+                                        @FechaInicioViaje, @FechaFinViaje, @Objetivo, @NumeroDias, @ViaticosRecibidos, @IdNivel, @ViaticosLocales)
+                                        SELECT @@IDENTITY ";
+
         protected string sqlUpdate = @" UPDATE CajaChicaEncabezado SET IdSociedadCentro = @IdSociedadCentro, NumeroCajaChica = @NumeroCajaChica, Descripcion = @Descripcion, UsuarioModificacion = @UsuarioModificacion, 
+                                        FechaModificacion = GETDATE(), TipoOperacion = @TipoOperacion
+                                        WHERE     (IdCajaChica = @IdCajaChica) ";
+
+        protected string sqlUpdateVl = @" UPDATE CajaChicaEncabezado SET IdSociedadCentro = @IdSociedadCentro, NumeroCajaChica = @NumeroCajaChica, Descripcion = @Descripcion, 
+                                        FechaInicioViaje = @FechaInicioViaje, FechaFinViaje = @FechaFinViaje, Objetivo = @Objetivo, NumeroDias = @NumeroDias, ViaticosRecibidos = @ViaticosRecibidos, 
+                                        IdNivel = @IdNivel, ViaticosLocales = @ViaticosLocales, UsuarioModificacion = @UsuarioModificacion, 
                                         FechaModificacion = GETDATE(), TipoOperacion = @TipoOperacion
                                         WHERE     (IdCajaChica = @IdCajaChica) ";
 
@@ -65,7 +78,8 @@ namespace DipCmiGT.LogicaCajasChicas.Entidad
             string sql = sqlSelect + @"Where a.idCajaChica = @IdCajaChica 
                                        group by a.IdCajaChica, a.IdSociedadCentro, a.Correlativo, a.NumeroCajaChica, a.Descripcion, a.Estado, a.UsuarioAlta,
 	                                   a.FechaCreacion, a.UsuarioModificacion, a.FechaModificacion, c.CodigoSociedad, c.Nombre, d.IdCentro, d.Nombre,
-                                       b.CodigoSociedad, d.IdCentro, a.correlativo, TipoOperacion, a.EncargadoCC, a.IdSociedadMoneda, g.Moneda, c.Moneda, c.Pais 
+                                       b.CodigoSociedad, d.IdCentro, a.correlativo, TipoOperacion, a.EncargadoCC, a.IdSociedadMoneda, g.Moneda, c.Moneda, c.Pais, 
+                                       a.FechaInicioViaje, a.FechaFinViaje, a.Objetivo, a.NumeroDias, a.ViaticosRecibidos, a.IdNivel, a.ViaticosLocales
                                        order by a.IdCajaChica desc ";
 
             _sqlComando = new SqlCommand(sql, _sqlConn);
@@ -85,7 +99,15 @@ namespace DipCmiGT.LogicaCajasChicas.Entidad
         {
             SqlCommand _sqlComando = null;
 
-            _sqlComando = new SqlCommand(sqlInsert, _sqlConn);
+            if (_cajaChicaDto.ViaticosLocales)
+            {
+                _sqlComando = new SqlCommand(sqlInsertVl, _sqlConn);
+            }
+            else
+            {
+                _sqlComando = new SqlCommand(sqlInsert, _sqlConn);
+            }
+            
             _sqlComando.CommandType = CommandType.Text;
 
             if (_sqlTran != null)
@@ -100,6 +122,18 @@ namespace DipCmiGT.LogicaCajasChicas.Entidad
             _sqlComando.Parameters.Add(new SqlParameter("@EncargadoCC", (object)_cajaChicaDto.NOMBRE_CC ?? DBNull.Value));
             _sqlComando.Parameters.Add(new SqlParameter("@IdSociedadMoneda", (object)_cajaChicaDto.ID_SOCIEDAD_MONEDA ?? DBNull.Value));
 
+            if (_cajaChicaDto.ViaticosLocales)
+            {
+                _sqlComando.Parameters.Add(new SqlParameter("@FechaInicioViaje", (object)_cajaChicaDto.FechaInicioViaje ?? DBNull.Value));
+                _sqlComando.Parameters.Add(new SqlParameter("@FechaFinViaje", (object)_cajaChicaDto.FechaFinViaje ?? DBNull.Value));
+                _sqlComando.Parameters.Add(new SqlParameter("@Objetivo", (object)_cajaChicaDto.Objetivo ?? DBNull.Value));
+                _sqlComando.Parameters.Add(new SqlParameter("@NumeroDias", (object)_cajaChicaDto.NumeroDias ?? DBNull.Value));
+                _sqlComando.Parameters.Add(new SqlParameter("@ViaticosRecibidos", (object)_cajaChicaDto.ViaticosRecibidos ?? DBNull.Value));
+                _sqlComando.Parameters.Add(new SqlParameter("@IdNivel", (object)_cajaChicaDto.IdNivel ?? DBNull.Value));
+                _sqlComando.Parameters.Add(new SqlParameter("@ViaticosLocales", (object)_cajaChicaDto.ViaticosLocales ?? DBNull.Value));
+            }
+
+
 
             return Convert.ToInt32(_sqlComando.ExecuteScalar());
         }
@@ -108,7 +142,15 @@ namespace DipCmiGT.LogicaCajasChicas.Entidad
         {
             SqlCommand _sqlComando = null;
 
-            _sqlComando = new SqlCommand(sqlUpdate, _sqlConn);
+            if (_cajaChicaDto.ViaticosLocales)
+            {
+                _sqlComando = new SqlCommand(sqlUpdateVl, _sqlConn);
+            }
+            else
+            {
+                _sqlComando = new SqlCommand(sqlUpdate, _sqlConn);
+            }
+
             _sqlComando.CommandType = CommandType.Text;
 
             if (_sqlTran != null)
@@ -122,6 +164,19 @@ namespace DipCmiGT.LogicaCajasChicas.Entidad
             _sqlComando.Parameters.Add(new SqlParameter("@TipoOperacion", (object)_cajaChicaDto.TIPO_OPERACION ?? DBNull.Value));
             _sqlComando.Parameters.Add(new SqlParameter("@IdCajaChica", (object)_cajaChicaDto.ID_CAJA_CHICA ?? DBNull.Value));
             _sqlComando.Parameters.Add(new SqlParameter("@IdSociedadMoneda", (object)_cajaChicaDto.ID_SOCIEDAD_MONEDA ?? DBNull.Value));
+
+
+            if (_cajaChicaDto.ViaticosLocales)
+            {
+                _sqlComando.Parameters.Add(new SqlParameter("@FechaInicioViaje", (object)_cajaChicaDto.FechaInicioViaje ?? DBNull.Value));
+                _sqlComando.Parameters.Add(new SqlParameter("@FechaFinViaje", (object)_cajaChicaDto.FechaFinViaje ?? DBNull.Value));
+                _sqlComando.Parameters.Add(new SqlParameter("@Objetivo", (object)_cajaChicaDto.Objetivo ?? DBNull.Value));
+                _sqlComando.Parameters.Add(new SqlParameter("@NumeroDias", (object)_cajaChicaDto.NumeroDias ?? DBNull.Value));
+                _sqlComando.Parameters.Add(new SqlParameter("@ViaticosRecibidos", (object)_cajaChicaDto.ViaticosRecibidos ?? DBNull.Value));
+                _sqlComando.Parameters.Add(new SqlParameter("@IdNivel", (object)_cajaChicaDto.IdNivel ?? DBNull.Value));
+                _sqlComando.Parameters.Add(new SqlParameter("@ViaticosLocales", (object)_cajaChicaDto.ViaticosLocales ?? DBNull.Value));
+            }
+
 
             return Convert.ToDecimal(_sqlComando.ExecuteScalar());
         }
@@ -164,6 +219,13 @@ namespace DipCmiGT.LogicaCajasChicas.Entidad
                     _cajaChica.ID_SOCIEDAD_MONEDA = sqlReader.IsDBNull(19) ? (Int16?)null : sqlReader.GetInt16(19);
                     _cajaChica.MONEDA = sqlReader.GetString(20);
                     _cajaChica.PAIS = sqlReader.GetString(21);
+                    _cajaChica.FechaInicioViaje = sqlReader.IsDBNull(22) ? (DateTime?)null : sqlReader.GetDateTime(22);
+                    _cajaChica.FechaFinViaje = sqlReader.IsDBNull(23) ? (DateTime?)null : sqlReader.GetDateTime(23);
+                    _cajaChica.Objetivo = sqlReader.IsDBNull(24) ? "" : sqlReader.GetString(24);
+                    _cajaChica.NumeroDias = sqlReader.IsDBNull(25) ? 0 : sqlReader.GetInt32(25);
+                    _cajaChica.ViaticosRecibidos = sqlReader.IsDBNull(26) ? 0 : sqlReader.GetDecimal(26);
+                    _cajaChica.IdNivel = sqlReader.IsDBNull(27) ? 0 : sqlReader.GetInt32(27);
+                    _cajaChica.ViaticosLocales = sqlReader.IsDBNull(28) ? false : sqlReader.GetBoolean(28);
 
                     _listaCajaChica.Add(_cajaChica);
                 }
@@ -250,7 +312,8 @@ namespace DipCmiGT.LogicaCajasChicas.Entidad
                                         and (a.Correlativo = case when @Correlativo = '' then a.Correlativo else @Correlativo end)
                                         group by a.IdCajaChica, a.IdSociedadCentro, a.Correlativo, a.NumeroCajaChica, a.Descripcion, a.Estado, a.UsuarioAlta,
                                         a.FechaCreacion, a.UsuarioModificacion, a.FechaModificacion, c.CodigoSociedad, c.Nombre, d.IdCentro, d.Nombre,
-                                        b.CodigoSociedad, d.IdCentro, a.correlativo, TipoOperacion, a.EncargadoCC, a.IdSociedadMoneda, g.Moneda, c.Moneda, c.Pais 
+                                        b.CodigoSociedad, d.IdCentro, a.correlativo, TipoOperacion, a.EncargadoCC, a.IdSociedadMoneda, g.Moneda, c.Moneda, c.Pais, 
+                                        a.FechaInicioViaje, a.FechaFinViaje, a.Objetivo, a.NumeroDias, a.ViaticosRecibidos, a.IdNivel, a.ViaticosLocales
                                         order by a.IdCajaChica desc";
 
 
@@ -287,7 +350,8 @@ namespace DipCmiGT.LogicaCajasChicas.Entidad
                                         and a.Estado = @Estado
                                         group by a.IdCajaChica, a.IdSociedadCentro, a.Correlativo, a.NumeroCajaChica, a.Descripcion, a.Estado, a.UsuarioAlta,
 	                                    a.FechaCreacion, a.UsuarioModificacion, a.FechaModificacion, c.CodigoSociedad, c.Nombre, d.IdCentro, d.Nombre,
-	                                    b.CodigoSociedad, d.IdCentro, a.correlativo, TipoOperacion, a.EncargadoCC, a.IdSociedadMoneda, g.Moneda, c.Moneda, c.Pais 
+	                                    b.CodigoSociedad, d.IdCentro, a.correlativo, TipoOperacion, a.EncargadoCC, a.IdSociedadMoneda, g.Moneda, c.Moneda, c.Pais, 
+                                        a.FechaInicioViaje, a.FechaFinViaje, a.Objetivo, a.NumeroDias, a.ViaticosRecibidos, a.IdNivel, a.ViaticosLocales
                                         order by a.IdCajaChica desc ";
 
             _sqlComando = new SqlCommand(sql, _sqlConn);
@@ -324,7 +388,8 @@ namespace DipCmiGT.LogicaCajasChicas.Entidad
                                         and e.Estado = 1
                                         group by a.IdCajaChica, a.IdSociedadCentro, a.Correlativo, a.NumeroCajaChica, a.Descripcion, a.Estado, a.UsuarioAlta,
                                         a.FechaCreacion, a.UsuarioModificacion, a.FechaModificacion, c.CodigoSociedad, c.Nombre, d.IdCentro, d.Nombre,
-                                        b.CodigoSociedad, d.IdCentro, a.correlativo, TipoOperacion, a.EncargadoCC, a.IdSociedadMoneda, g.Moneda, c.Moneda, c.Pais 
+                                        b.CodigoSociedad, d.IdCentro, a.correlativo, TipoOperacion, a.EncargadoCC, a.IdSociedadMoneda, g.Moneda, c.Moneda, c.Pais, 
+                                        a.FechaInicioViaje, a.FechaFinViaje, a.Objetivo, a.NumeroDias, a.ViaticosRecibidos, a.IdNivel, a.ViaticosLocales
                                         order by a.IdCajaChica desc ";
 
             _sqlComando = new SqlCommand(sql, _sqlConn);
@@ -363,7 +428,8 @@ namespace DipCmiGT.LogicaCajasChicas.Entidad
                                         and e.Estado != 1
                                         group by a.IdCajaChica, a.IdSociedadCentro, a.Correlativo, a.NumeroCajaChica, a.Descripcion, a.Estado, a.UsuarioAlta,
                                         a.FechaCreacion, a.UsuarioModificacion, a.FechaModificacion, c.CodigoSociedad, c.Nombre, d.IdCentro, d.Nombre,
-                                        b.CodigoSociedad, d.IdCentro, a.correlativo, TipoOperacion, a.EncargadoCC, a.IdSociedadMoneda, g.Moneda, c.Moneda, c.Pais 
+                                        b.CodigoSociedad, d.IdCentro, a.correlativo, TipoOperacion, a.EncargadoCC, a.IdSociedadMoneda, g.Moneda, c.Moneda, c.Pais, 
+                                        a.FechaInicioViaje, a.FechaFinViaje, a.Objetivo, a.Numerodias, a.ViaticosRecibidos, a.IdNivel, a.ViaticosLocales
                                         order by a.IdCajaChica desc ";
 
             _sqlComando = new SqlCommand(sql, _sqlConn);

@@ -114,6 +114,15 @@
             </div>
         </div>
         <br />
+         <div style="float: left; padding-bottom: 8px;">
+            <div style="float: left; width: 180px;">
+                <asp:Label ID="lblTiempoLiquidacion" runat="server" Text="Tiempo de Liquidacion:"></asp:Label>
+            </div>
+            <div style="float: left; width: 180px;">
+                <input type="text" id="txtTiempoLiquidacion" class="mayuscula" runat="server" />
+            </div>
+        </div>
+        <br />
         <div style="float: left; padding-bottom: 8px;">
             <div style="float: left; width: 180px;">
                 <asp:Label ID="Label5" runat="server" Text="Mandante:"></asp:Label>
@@ -183,6 +192,7 @@
                 <%--<asp:CheckBoxField DataField="ALTA" HeaderText="ALTA" />--%>
                 <asp:BoundField DataField="PAIS" HeaderText="PA&Iacute;S" />
                 <asp:BoundField DataField="MONEDA" HeaderText="MONEDA" />
+                <asp:BoundField DataField="TIEMPO_LIQUIDACION" HeaderText="TIEMPO LIQUIDACION"/>
                 <asp:TemplateField HeaderText="ALTA" ItemStyle-HorizontalAlign="Center">
                     <ItemTemplate>
                         <asp:CheckBox ID="idAlta2" runat="server" Style="position: static" Checked='<%#bool.Parse(Eval("idAlta2").ToString())%>' />

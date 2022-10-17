@@ -28,33 +28,51 @@
             var ddlCentro = $('#<%=ddlCentro.ClientID %>');
             var ddlCajaChica = $('#<%=ddlCajaChica.ClientID %>');
             var ddlMoneda = $('#<%=ddlMoneda.ClientID %>');
+            var ddlOperacion = $('#<%=ddlTipoOperacion.ClientID %>');
+            var ddlNiveles = $('#<%=ddlNivel.ClientID %>');
+            var divCamposLiquidacion = document.getElementById("camposLiquidacion");
 
             //Hirend Field
             var hfSociedad = $('#<%= hfSociedad.ClientID %>');
             var hfCentro = $('#<%= hfCentro.ClientID %>');
             var hfCajaChicaSAP = $('#<%= hfCajaChicaSAP.ClientID %>');
             var hfMoneda = $('#<%=hfMoneda.ClientID %>');
+            var hfNivel = $('#<%=hfNivel.ClientID %>');
 
             //Uri WebServices
             var ajaxUrlForChild1 = '../../RegistroFacturas/MapeoUsuariosCentros.asmx/ListarCentrosUsuario';
             var ajaxUrlForChild2 = '../../RegistroFacturas/MapeoUsuariosCentros.asmx/BuscarCajasChicasSAP';
             var ajaxUrlForChild3 = '../../RegistroFacturas/MapeoUsuariosCentros.asmx/ListarSociedadMoneda';
+            var ajaxUrlForChild4 = '../../RegistroFacturas/MapeoUsuariosCentros.asmx/ListarNiveles';
 
             //Bind events
             ddlSociedad.bind('change', ddlSociedadChange);
             ddlCentro.bind('change', ddlCentroChange);
             ddlCajaChica.bind('change', ddlCajaChicaChange);
             ddlMoneda.bind('change', ddlMonedaChange);
+            ddlOperacion.bind('change', ddlOperacionChange);
+            ddlNiveles.bind('change', ddlNivelChange);
 
             //Events handlers
+            function ddlOperacionChange() {
+                if (this.value == "VL") {
+                    divCamposLiquidacion.style.display = "block";
+                }
+                else {
+                    divCamposLiquidacion.style.display = "none";
+                }
+            }
+
             function ddlSociedadChange() {
                 hfSociedad.val(this.value);
                 hfCentro.val('0');
                 hfCajaChicaSAP.val('0');
                 hfMoneda.val('0');
+                hfNivel.val('0');
                 doAjaxCall(ajaxUrlForChild1, '{codigoSociedad: ' + ddlSociedad.val() + '}', CargarCentro);
                 doAjaxCall(ajaxUrlForChild2, '{codigoSociedad: ' + ddlSociedad.val() + '}', CargarCajaChica);
                 doAjaxCall(ajaxUrlForChild3, '{codigoSociedad: ' + ddlSociedad.val() + '}', CargarMoneda);
+                doAjaxCall(ajaxUrlForChild4, '{codigoSociedad: ' + ddlSociedad.val() + '}', CargarNiveles);
             }
 
             function ddlCentroChange() {
@@ -69,6 +87,10 @@
                 hfMoneda.val(this.value);
             };
 
+            function ddlNivelChange() {
+                hfNivel.val(this.value);
+            };
+
             //Disabled them initially
             //ddlCentro.attr('disabled', 'disabled');
 
@@ -77,6 +99,7 @@
                 doAjaxCall(ajaxUrlForChild1, '{CodigoSociedad: ' + ddlSociedad.val() + '}', CargarCentro);
                 doAjaxCall(ajaxUrlForChild2, '{CodigoSociedad: ' + ddlSociedad.val() + '}', CargarCajaChica);
                 doAjaxCall(ajaxUrlForChild3, '{CodigoSociedad: ' + ddlSociedad.val() + '}', CargarMoneda);
+                doAjaxCall(ajaxUrlForChild4, '{codigoSociedad: ' + ddlSociedad.val() + '}', CargarNiveles);
             }
 
             function doAjaxCall(url, data, successHandler) {
@@ -147,6 +170,33 @@
                 //Set selected value if there is any value in hidden field
                 ddlMoneda.val(hfMoneda.val());
             }
+
+            function CargarNiveles(response) {
+                var nivel = (typeof response.d) == 'string' ? eval('(' + response.d + ')') : response.d;
+                ddlNiveles.find('option').remove();
+
+
+                //Append default option
+                ddlNiveles.attr('disabled', false).append($('<option></option>').attr('value', 0).text('::Seleccione Nivel::'));
+                var doc = $('<div></div>');
+                for (var i = 0; i < nivel.length; i++) {
+                    doc.append($('<option></option>').
+                            attr('value', nivel[i].IDENTIFICADOR).text(nivel[i].DESCRIPCION));
+                }
+                ddlNiveles.append(doc.html());
+                doc.remove();
+
+                //Set selected value if there is any value in hidden field
+                ddlNiveles.val(hfMoneda.val());
+            }
+
+            $('#<%=txtFechaInicioViaje.ClientID%>').datepicker({
+                dateFormat: 'yy/mm/dd'
+            });
+
+            $('#<%=txtFechaFinViaje.ClientID%>').datepicker({
+                dateFormat: 'yy/mm/dd'
+            });
         });
 
         //Validacion de Campos
@@ -224,6 +274,7 @@
     <asp:HiddenField ID="hfCentro" runat="server" Value="0" />
     <asp:HiddenField ID="hfCajaChicaSAP" runat="server" Value="0" />
     <asp:HiddenField ID="hfMoneda" runat="server" Value="0" />
+    <asp:HiddenField ID="hfNivel" runat="server" Value="0" />
     <div class="TituloCaja">
         <div class="TituloPagina">
             Registro de cajas chicas</div>
@@ -266,15 +317,6 @@
         </div>
         <div style="float: left; padding-left: 5px">
             <div style="float: left; margin-top: 10px; padding-left: 8px; width: 180px;">
-                <asp:Label ID="lblTipoOperacion" runat="server" Text="Tipo operacion:"></asp:Label>
-            </div>
-            <div style="float: left; margin-top: 10px; padding-left: 8px;">
-                <asp:DropDownList ID="ddlTipoOperacion" runat="server" Width="350px">
-                </asp:DropDownList>
-            </div>
-        </div>
-        <div style="float: left; padding-left: 5px">
-            <div style="float: left; margin-top: 10px; padding-left: 8px; width: 180px;">
                 <asp:Label ID="lblMoneda" runat="server" Text="Moneda:"></asp:Label>
             </div>
             <div style="float: left; margin-top: 10px; padding-left: 8px;">
@@ -287,8 +329,73 @@
                 <asp:Label ID="lblDescripcion" runat="server" Text="Descripci&oacute;n:"></asp:Label>
             </div>
             <div style="float: left; margin-top: 10px; padding-left: 8px; width: 350px;">
-                <asp:TextBox ID="txtDescripcion" runat="server" CssClass="mayuscula" Width="265px"
+                <asp:TextBox ID="txtDescripcion" runat="server" CssClass="mayuscula" Width="350px"
                     MaxLength="25"></asp:TextBox>
+            </div>
+        </div>
+        <div style="float: left; padding-left: 5px">
+            <div style="float: left; margin-top: 10px; padding-left: 8px; width: 180px;">
+                <asp:Label ID="lblTipoOperacion" runat="server" Text="Tipo operacion:"></asp:Label>
+            </div>
+            <div style="float: left; margin-top: 10px; padding-left: 8px;">
+                <asp:DropDownList ID="ddlTipoOperacion" runat="server" Width="350px">
+                </asp:DropDownList> 
+            </div>    
+        </div>
+        <div id="camposLiquidacion" style="display: none">
+            <div style="float: left; padding-left: 5px">
+                <div style="float: left; margin-top: 10px; padding-left: 8px; width: 180px;">
+                    <asp:Label ID="lblFechaInicioViaje" runat="server" Text="Fecha Inicio Viaje:"></asp:Label>
+                </div>
+                <div style="float: left; margin-top: 10px; padding-left: 8px; width: 350px;">
+                    <asp:TextBox ID="txtFechaInicioViaje" runat="server" CssClass="mayuscula" Width="350px"
+                        MaxLength="25"></asp:TextBox>
+                </div>
+            </div>
+            <div style="float: left; padding-left: 5px">
+                <div style="float: left; margin-top: 10px; padding-left: 8px; width: 180px;">
+                    <asp:Label ID="lblFechaFinViaje" runat="server" Text="Fecha Inicio Viaje:"></asp:Label>
+                </div>
+                <div style="float: left; margin-top: 10px; padding-left: 8px; width: 350px;">
+                    <asp:TextBox ID="txtFechaFinViaje" runat="server" CssClass="mayuscula" Width="350px"
+                        MaxLength="25"></asp:TextBox>
+                </div>
+            </div>
+            <div style="float: left; padding-left: 5px">
+                <div style="float: left; margin-top: 10px; padding-left: 8px; width: 180px;">
+                    <asp:Label ID="lblObjetivo" runat="server" Text="Objetivo:"></asp:Label>
+                </div>
+                <div style="float: left; margin-top: 10px; padding-left: 8px; width: 350px;">
+                    <asp:TextBox ID="txtObjetivo" runat="server" CssClass="mayuscula" Width="350px"
+                        MaxLength="25"></asp:TextBox>
+                </div>
+            </div>
+            <div style="float: left; padding-left: 5px">
+                <div style="float: left; margin-top: 10px; padding-left: 8px; width: 180px;">
+                    <asp:Label ID="lblNumeroDias" runat="server" Text="Numero de Dias:"></asp:Label>
+                </div>
+                <div style="float: left; margin-top: 10px; padding-left: 8px; width: 350px;">
+                    <asp:TextBox ID="txtNumeroDias" runat="server" CssClass="mayuscula" Width="350px"
+                        MaxLength="25"></asp:TextBox>
+                </div>
+            </div>
+            <div style="float: left; padding-left: 5px">
+                <div style="float: left; margin-top: 10px; padding-left: 8px; width: 180px;">
+                    <asp:Label ID="lblViaticosRecibidos" runat="server" Text="Viaticos Recibidos:"></asp:Label>
+                </div>
+                <div style="float: left; margin-top: 10px; padding-left: 8px; width: 350px;">
+                    <asp:TextBox ID="txtViaticosRecibidos" runat="server" CssClass="mayuscula" Width="350px"
+                        MaxLength="25"></asp:TextBox>
+                </div>
+            </div>
+            <div style="float: left; padding-left: 5px">
+                <div style="float: left; margin-top: 10px; padding-left: 8px; width: 180px;">
+                    <asp:Label ID="lblNivel" runat="server" Text="Nivel:"></asp:Label>
+                </div>
+                <div style="float: left; margin-top: 10px; padding-left: 8px;">
+                    <asp:DropDownList ID="ddlNivel" runat="server" Width="350px">
+                    </asp:DropDownList>
+                </div>
             </div>
         </div>
         <div style="float: left; padding-left: 5px; width: 551px;">

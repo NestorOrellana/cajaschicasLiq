@@ -22,7 +22,7 @@ namespace DipCmiGT.LogicaCajasChicas
         public Int16 IdNuevoEstado { get; set; }
         public Int16 IdEstadoCC { get; set; }
         public decimal IdCC { get; set; }
-        public string NombreCC {get; set; }
+        public string NombreCC { get; set; }
         public string IdEstadoSicnro { get; set; }
         public string DocIdentificacion { get; set; }
         public long CodigoSincronizacion { get; set; }

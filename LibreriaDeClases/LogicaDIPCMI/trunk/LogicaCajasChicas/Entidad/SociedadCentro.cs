@@ -424,7 +424,7 @@ namespace LogicaCajasChicas.Entidad
             return CargarDDL(_sqlComando.ExecuteReader());
         }
 
-        private List<LlenarDDL_DTO> CargarDDL(SqlDataReader sqlDataReader)
+        protected List<LlenarDDL_DTO> CargarDDL(SqlDataReader sqlDataReader, bool niveles = false)
         {
             List<LlenarDDL_DTO> _listaDDL = new List<LlenarDDL_DTO>();
             LlenarDDL_DTO _DDL = new LlenarDDL_DTO();
@@ -433,7 +433,13 @@ namespace LogicaCajasChicas.Entidad
             {
                 _DDL = new LlenarDDL_DTO();
 
-                _DDL.IDENTIFICADOR = sqlDataReader.GetString(0);
+                if (niveles) {
+                    _DDL.IDENTIFICADOR = sqlDataReader.GetInt32(0).ToString();
+                }
+                else {
+                    _DDL.IDENTIFICADOR = sqlDataReader.GetString(0);
+                }
+
                 _DDL.DESCRIPCION = sqlDataReader.GetString(1);
 
                 _listaDDL.Add(_DDL);
@@ -509,6 +515,25 @@ namespace LogicaCajasChicas.Entidad
             return CargarDDL(_sqlComando.ExecuteReader());
         }
 
+        public List<LlenarDDL_DTO> ListarNiveles(string codigoSociedad)
+        {
+            SqlCommand _sqlComando = null;
+            string sql = @"SELECT n.CodigoNivel, n.Nivel 
+                            FROM dbo.NivelLiquidacion n
+                            INNER JOIN dbo.Sociedad s
+                            ON s.Pais = n.Pais
+                            WHERE s.CodigoSociedad = @CodigoSociedad";
+
+            _sqlComando = new SqlCommand(sql, _sqlConn);
+            _sqlComando.CommandType = CommandType.Text;
+
+            if (_sqlTran != null)
+                _sqlComando.Transaction = _sqlTran;
+
+            _sqlComando.Parameters.Add(new SqlParameter("@CodigoSociedad", (object)codigoSociedad ?? DBNull.Value));
+
+            return CargarDDL(_sqlComando.ExecuteReader(), true);
+        }
         #endregion
     }
 }

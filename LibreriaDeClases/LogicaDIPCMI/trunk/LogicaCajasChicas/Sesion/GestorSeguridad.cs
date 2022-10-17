@@ -215,7 +215,7 @@ namespace DipCmiGT.LogicaCajasChicas.Sesion
                     if (!_usuario.ExisteUsuario(usuarioDTO.USUARIO, usuarioDTO.IDENTIFICADOR))
                         throw new ExcepcionesDIPCMI("El Usuario ya se encuentra registrado");
                     else
-                    usuarioDTO.ID_USUARIO = _usuario.EjecutarSenteciaInsert(usuarioDTO);
+                        usuarioDTO.ID_USUARIO = _usuario.EjecutarSenteciaInsert(usuarioDTO);
                 }
                 else
                     x = _usuario.EjecutarSentenciaUpdate(usuarioDTO);
@@ -403,7 +403,7 @@ namespace DipCmiGT.LogicaCajasChicas.Sesion
             try
             {
                 cnnSql.Open();
-               bitacoraDTO.ID_BITACORA = _usuario.RegistrarBitacora(bitacoraDTO);
+                bitacoraDTO.ID_BITACORA = _usuario.RegistrarBitacora(bitacoraDTO);
             }
             finally
             {
@@ -711,7 +711,7 @@ namespace DipCmiGT.LogicaCajasChicas.Sesion
             try
             {
                 cnnSql.Open();
-                  return  _superUsuario.ModificarEstadoFactura(estado, idfactura, estadoCC, idCC, usuario, dominio, estadoActual, opcion, justificacion);
+                return _superUsuario.ModificarEstadoFactura(estado, idfactura, estadoCC, idCC, usuario, dominio, estadoActual, opcion, justificacion);
 
             }
             finally

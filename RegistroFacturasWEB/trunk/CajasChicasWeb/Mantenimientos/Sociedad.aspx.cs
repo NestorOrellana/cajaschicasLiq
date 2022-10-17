@@ -99,14 +99,15 @@ namespace RegistroFacturasWEB.Mantenimientos
                                               FECHA_MODIFICACION = sociedad.USUARIO_MANTENIMIENTO.FECHA_MODIFICACION,
                                               COMPRA = sociedad.MONTO_COMPRA_CC, 
                                               TOLERANCIA = sociedad.TOLERANCIA_COMPRA_CC,
-                                              MANDANTE = sociedad.MANDANTE
+                                              MANDANTE = sociedad.MANDANTE,
+                                              TIEMPO_LIQUIDACION = sociedad.TiempoLiquidacion
                                           }).ToArray();
 
                 gvSociedad.DataBind();
 
 
             }
-            catch
+            catch(Exception ex)
             {
                 DesplegarError("Error al desplegar las sociedades");
             }
@@ -150,6 +151,7 @@ namespace RegistroFacturasWEB.Mantenimientos
             lblFechaAltaBD.Text = string.Empty;
             txtMesesFactura.Text = string.Empty;
             ddlMandante.SelectedItem.Value = "0";
+            txtTiempoLiquidacion.Value = "";
             OcultarAvisos();
         }
 
@@ -168,6 +170,7 @@ namespace RegistroFacturasWEB.Mantenimientos
             _sociedadDto.ALTA = cbAlta.Checked;
             _sociedadDto.MANDANTE = ddlMandante.SelectedValue.ToString();
             // _sociedadDto.USUARIO_MANTENIMIENTO.FECHA_MODIFICACION = Convert.ToDateTime(lblFechaModificacionDB.Text);
+            _sociedadDto.TiempoLiquidacion = int.Parse(txtTiempoLiquidacion.Value);
 
             return _sociedadDto;
         }
@@ -187,17 +190,21 @@ namespace RegistroFacturasWEB.Mantenimientos
                             if ((txtNombre.Text != "") && (txtNombre.Text.Length <= 50))
                             {
                                 result = true;
-                                if ((txtMesesFactura.Text != "") && (txtMesesFactura.Text.Length <= 5))
+                                if ((txtTiempoLiquidacion.Value != "") && (txtTiempoLiquidacion.Value != "0"))
                                 {
-                                    Boolean Numero = Int16.TryParse(txtMesesFactura.Text, out numer);
-
-                                    if (Numero)
+                                    result = true;
+                                    if ((txtMesesFactura.Text != "") && (txtMesesFactura.Text.Length <= 5))
                                     {
-                                        result = true;
-                                    }
-                                    else
-                                        result = false;
+                                        Boolean Numero = Int16.TryParse(txtMesesFactura.Text, out numer);
 
+                                        if (Numero)
+                                        {
+                                            result = true;
+                                        }
+                                        else
+                                            result = false;
+
+                                    }
                                 }
                             }
                         }
@@ -252,16 +259,17 @@ namespace RegistroFacturasWEB.Mantenimientos
             txtMesesFactura.Text = HttpUtility.HtmlDecode(fila.Cells[3].Text);
             txtPais.Value = HttpUtility.HtmlDecode(fila.Cells[4].Text);
             txtMoneda.Value = HttpUtility.HtmlDecode(fila.Cells[5].Text);
+            txtTiempoLiquidacion.Value = HttpUtility.HtmlDecode(fila.Cells[6].Text);
 
             cbAlta.Checked = (((CheckBox)fila.FindControl("idAlta2")).Checked);
-            lblUsuarioAltaBD.Text = HttpUtility.HtmlDecode(fila.Cells[7].Text);
-            lblFechaAltaBD.Text = HttpUtility.HtmlDecode(fila.Cells[8].Text);
-            lblUsuarioModificacionBD.Text = HttpUtility.HtmlDecode(fila.Cells[9].Text);
-            lblFechaModificacionDB.Text = HttpUtility.HtmlDecode(fila.Cells[10].Text);
+            lblUsuarioAltaBD.Text = HttpUtility.HtmlDecode(fila.Cells[8].Text);
+            lblFechaAltaBD.Text = HttpUtility.HtmlDecode(fila.Cells[9].Text);
+            lblUsuarioModificacionBD.Text = HttpUtility.HtmlDecode(fila.Cells[10].Text);
+            lblFechaModificacionDB.Text = HttpUtility.HtmlDecode(fila.Cells[11].Text);
 
-            txtValorCompraCC.Value = HttpUtility.HtmlDecode(fila.Cells[14].Text);
-            txtTolerancia.Value = HttpUtility.HtmlDecode(fila.Cells[15].Text);
-            ddlMandante.SelectedValue = HttpUtility.HtmlDecode(fila.Cells[16].Text); ;
+            txtValorCompraCC.Value = HttpUtility.HtmlDecode(fila.Cells[15].Text);
+            txtTolerancia.Value = HttpUtility.HtmlDecode(fila.Cells[16].Text);
+            ddlMandante.SelectedValue = HttpUtility.HtmlDecode(fila.Cells[17].Text); ;
         }
 
         private void DarBajaSociedad(GridViewCommandEventArgs e)

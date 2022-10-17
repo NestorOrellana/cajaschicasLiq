@@ -31,6 +31,14 @@ namespace DipCmiGT.LogicaCajasChicas
         public Int16? ID_SOCIEDAD_MONEDA { get; set; }
         public string MONEDA { get; set; }
         public string PAIS { get; set; }
+        public DateTime? FechaInicioViaje { get; set; }
+        public DateTime? FechaFinViaje { get; set; }
+        public string Objetivo { get; set; }
+        public int? NumeroDias { get; set; }
+        public decimal? ViaticosRecibidos { get; set; }
+        public int? IdNivel { get; set; }
+        public string NivelStr { get; set; }
+        public bool ViaticosLocales { get; set; }
 
         public UsuarioMantenimientoDTO USUARIO_MANTENIMIENTO { get; set; }
     }

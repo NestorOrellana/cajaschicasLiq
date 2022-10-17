@@ -16,14 +16,14 @@ namespace DipCmiGT.LogicaCajasChicas.Entidad
         private SqlTransaction _sqlTran = null;
 
         protected string sqlSelect = @"SELECT CodigoSociedad, Nombre, MesesFactura, Pais, Moneda, MontoCompraCC, ToleranciaCompraCC, Alta, UsuarioAlta, FechaAlta, 
-                                       UsuarioModificacion, FechaModificacion, Mandante
+                                       UsuarioModificacion, FechaModificacion, Mandante, TiempoLiquidacion
                                        FROM Sociedad";
 
-        protected string sqlInsert = @"INSERT INTO Sociedad (CodigoSociedad, Nombre, MesesFactura, Pais, Moneda, UsuarioAlta, MontoCompraCC, ToleranciaCompraCC, Mandante)
-                                                      VALUES (@CodigoSociedad, @Nombre, @MesesFactura, @Pais, @Moneda ,@UsuarioAlta, @MontoCompraCC, @ToleranciaCompraCC, @Mandante) ";
+        protected string sqlInsert = @"INSERT INTO Sociedad (CodigoSociedad, Nombre, MesesFactura, Pais, Moneda, UsuarioAlta, MontoCompraCC, ToleranciaCompraCC, Mandante, TiempoLiquidacion)
+                                                      VALUES (@CodigoSociedad, @Nombre, @MesesFactura, @Pais, @Moneda ,@UsuarioAlta, @MontoCompraCC, @ToleranciaCompraCC, @Mandante, @TiempoLiquidacion) ";
 
         protected string sqlUpdate = @"UPDATE Sociedad SET Nombre = @Nombre, MesesFactura = @MesesFactura, Pais = @Pais, Moneda = @Moneda, Alta = @Alta,  UsuarioModificacion = @UsuarioModificacion, FechaModificacion = getdate(),
-                                                                    Mandante = @Mandante, MontoCompraCC = @MontoCompraCC, ToleranciaCompraCC = @ToleranciaCompraCC
+                                                                    Mandante = @Mandante, MontoCompraCC = @MontoCompraCC, ToleranciaCompraCC = @ToleranciaCompraCC, TiempoLiquidacion = @TiempoLiquidacion
                                                             WHERE CodigoSociedad = @CodigoSociedad ";
 
         #endregion
@@ -80,6 +80,7 @@ namespace DipCmiGT.LogicaCajasChicas.Entidad
             sqlComando.Parameters.Add(new SqlParameter("@ToleranciaCompraCC", (object)sociedadDTO.TOLERANCIA_COMPRA_CC ?? DBNull.Value));
             sqlComando.Parameters.Add(new SqlParameter("@UsuarioAlta", (object)sociedadDTO.USUARIO_MANTENIMIENTO.USUARIO_ALTA.ToUpper() ?? DBNull.Value));
             sqlComando.Parameters.Add(new SqlParameter("@Mandante", (object)sociedadDTO.MANDANTE.ToString() ?? DBNull.Value));
+            sqlComando.Parameters.Add(new SqlParameter("@TiempoLiquidacion", (object)sociedadDTO.TiempoLiquidacion ?? DBNull.Value));
 
             return Convert.ToInt32(sqlComando.ExecuteScalar());
 
@@ -105,6 +106,7 @@ namespace DipCmiGT.LogicaCajasChicas.Entidad
             sqlComando.Parameters.Add(new SqlParameter("@Alta", (object)sociedadDTO.ALTA ?? DBNull.Value));
             sqlComando.Parameters.Add(new SqlParameter("@UsuarioModificacion", (object)sociedadDTO.USUARIO_MANTENIMIENTO.USUARIO_MODIFICO.ToUpper() ?? DBNull.Value));
             sqlComando.Parameters.Add(new SqlParameter("@Mandante", (object)sociedadDTO.MANDANTE.ToUpper() ?? DBNull.Value));
+            sqlComando.Parameters.Add(new SqlParameter("@TiempoLiquidacion", (object)sociedadDTO.TiempoLiquidacion ?? DBNull.Value));
 
             return Convert.ToInt32(sqlComando.ExecuteScalar());
         }
@@ -128,6 +130,7 @@ namespace DipCmiGT.LogicaCajasChicas.Entidad
                     _sociedadDto.MONEDA = sqlReader.GetString(4);
                     _sociedadDto.MONTO_COMPRA_CC = sqlReader.GetDouble(5);
                     _sociedadDto.TOLERANCIA_COMPRA_CC = sqlReader.GetInt16(6);
+                    _sociedadDto.TiempoLiquidacion = sqlReader.IsDBNull(13) ? 0 : sqlReader.GetInt32(13);
                     _sociedadDto.ALTA = sqlReader.GetBoolean(7);
                     _sociedadDto.USUARIO_MANTENIMIENTO.USUARIO_ALTA = sqlReader.GetString(8);
                     _sociedadDto.USUARIO_MANTENIMIENTO.FECHA_ALTA = sqlReader.GetDateTime(9);

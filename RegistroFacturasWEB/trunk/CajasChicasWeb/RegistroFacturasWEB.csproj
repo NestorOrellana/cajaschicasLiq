@@ -104,6 +104,7 @@
     <Content Include="App_Themes\Tema\Images\ui-icons_454545_256x240.png" />
     <Content Include="App_Themes\Tema\Images\ui-icons_888888_256x240.png" />
     <Content Include="App_Themes\Tema\Images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Aprobadores\AprobacionExcepcionesLiquidacion.aspx" />
     <Content Include="Aprobadores\AprobacionFacturas.aspx" />
     <Content Include="Aprobadores\RevisionFacturas.asmx" />
     <Content Include="bootstrap\css\bootstrap-responsive.css" />
@@ -163,7 +164,16 @@
     <Content Include="Login.aspx" />
     <Content Include="Mantenimientos\Articulo.aspx" />
     <Content Include="Mantenimientos\Centro.aspx" />
+    <Content Include="Mantenimientos\Gasto.aspx" />
+    <Content Include="Mantenimientos\Kilometraje.aspx" />
+    <Content Include="Mantenimientos\Liquidaciones.aspx" />
+    <Content Include="Mantenimientos\MapeoCECOCuentaGasto.aspx" />
     <Content Include="Mantenimientos\MapeoRegistradorAprobador.aspx" />
+    <Content Include="Mantenimientos\NivelLiquidacion.aspx" />
+    <Content Include="Mantenimientos\Rol.aspx" />
+    <Content Include="Mantenimientos\RolUsuario.aspx" />
+    <Content Include="Mantenimientos\Usuarios.aspx" />
+    <Content Include="Mantenimientos\UsuarioSociedadCentro.aspx" />
     <Content Include="RegistroFacturas\MapeoUsuarioCaja_MM.aspx" />
     <Content Include="RegistroFacturas\MapeoUsuarioCuenta_MM.aspx" />
     <Content Include="RegistroFacturas\MapeoUsuarioCaja.aspx" />
@@ -179,6 +189,7 @@
     <Content Include="RegistroFacturas\ListadoCajasChicas.aspx" />
     <Content Include="RegistroFacturas\ListadoFacturas.aspx" />
     <Content Include="RegistroFacturas\RegistroFactura.js" />
+    <Content Include="RegistroFacturas\RegistroLiquidacionViaticos.aspx" />
     <Content Include="Reportes\BusquedaFactura.aspx" />
     <Content Include="Reportes\CajaChica.aspx" />
     <Content Include="Reportes\CentroCosto.aspx" />
@@ -226,6 +237,8 @@
     <Content Include="Seguridad\ListaUsuarios.aspx" />
     <Content Include="Seguridad\MapeoUsuariosCentros.asmx" />
     <Content Include="SuperUsuario\SuperUsuario.aspx" />
+    <Content Include="Seguridad\SincronizacionPOWS.asmx" />
+    <Content Include="Seguridad\SincronizacionPO.aspx" />
     <Content Include="Seguridad\Rol.aspx" />
     <Content Include="Seguridad\RolUsuario.aspx" />
     <Content Include="Seguridad\UsuarioCentroCosto.aspx" />
@@ -281,6 +294,13 @@
     <Compile Include="Account\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Aprobadores\AprobacionExcepcionesLiquidacion.aspx.cs">
+      <DependentUpon>AprobacionExcepcionesLiquidacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Aprobadores\AprobacionExcepcionesLiquidacion.aspx.designer.cs">
+      <DependentUpon>AprobacionExcepcionesLiquidacion.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Aprobadores\AprobacionFacturas.aspx.cs">
       <DependentUpon>AprobacionFacturas.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -323,12 +343,75 @@
     <Compile Include="Mantenimientos\Centro.aspx.designer.cs">
       <DependentUpon>Centro.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Mantenimientos\Gasto.aspx.cs">
+      <DependentUpon>Gasto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\Gasto.aspx.designer.cs">
+      <DependentUpon>Gasto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\Kilometraje.aspx.cs">
+      <DependentUpon>Kilometraje.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\Kilometraje.aspx.designer.cs">
+      <DependentUpon>Kilometraje.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\Liquidaciones.aspx.cs">
+      <DependentUpon>Liquidaciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\Liquidaciones.aspx.designer.cs">
+      <DependentUpon>Liquidaciones.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\MapeoCECOCuentaGasto.aspx.cs">
+      <DependentUpon>MapeoCECOCuentaGasto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\MapeoCECOCuentaGasto.aspx.designer.cs">
+      <DependentUpon>MapeoCECOCuentaGasto.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Mantenimientos\MapeoRegistradorAprobador.aspx.cs">
       <DependentUpon>MapeoRegistradorAprobador.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Mantenimientos\MapeoRegistradorAprobador.aspx.designer.cs">
       <DependentUpon>MapeoRegistradorAprobador.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\NivelLiquidacion.aspx.cs">
+      <DependentUpon>NivelLiquidacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\NivelLiquidacion.aspx.designer.cs">
+      <DependentUpon>NivelLiquidacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\Rol.aspx.cs">
+      <DependentUpon>Rol.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\Rol.aspx.designer.cs">
+      <DependentUpon>Rol.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\RolUsuario.aspx.cs">
+      <DependentUpon>RolUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\RolUsuario.aspx.designer.cs">
+      <DependentUpon>RolUsuario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\Usuarios.aspx.cs">
+      <DependentUpon>Usuarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\Usuarios.aspx.designer.cs">
+      <DependentUpon>Usuarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\UsuarioSociedadCentro.aspx.cs">
+      <DependentUpon>UsuarioSociedadCentro.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\UsuarioSociedadCentro.aspx.designer.cs">
+      <DependentUpon>UsuarioSociedadCentro.aspx</DependentUpon>
     </Compile>
     <Compile Include="RegistroFacturas\MapeoUsuarioCaja_MM.aspx.cs">
       <DependentUpon>MapeoUsuarioCaja_MM.aspx</DependentUpon>
@@ -439,6 +522,13 @@
     </Compile>
     <Compile Include="RegistroFacturas\RegistroFacturas.aspx.designer.cs">
       <DependentUpon>RegistroFacturas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RegistroFacturas\RegistroLiquidacionViaticos.aspx.cs">
+      <DependentUpon>RegistroLiquidacionViaticos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RegistroFacturas\RegistroLiquidacionViaticos.aspx.designer.cs">
+      <DependentUpon>RegistroLiquidacionViaticos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reportes\BusquedaFactura.aspx.cs">
       <DependentUpon>BusquedaFactura.aspx</DependentUpon>
@@ -604,6 +694,17 @@
     </Compile>
     <Compile Include="SuperUsuario\SuperUsuarioCC.aspx.designer.cs">
       <DependentUpon>SuperUsuarioCC.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Seguridad\SincronizacionPOWS.asmx.cs">
+      <DependentUpon>SincronizacionPOWS.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Seguridad\SincronizacionPO.aspx.cs">
+      <DependentUpon>SincronizacionPO.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Seguridad\SincronizacionPO.aspx.designer.cs">
+      <DependentUpon>SincronizacionPO.aspx</DependentUpon>
     </Compile>
     <Compile Include="Seguridad\ListaUsuarios.aspx.cs">
       <DependentUpon>ListaUsuarios.aspx</DependentUpon>
